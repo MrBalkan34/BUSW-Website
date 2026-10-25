@@ -2,6 +2,23 @@
 
 All notable changes to the BUSW website are recorded here.
 
+## [Unreleased]
+
+### Added
+- `flight-companion.html`: details page for BUSW Flight Companion (key capabilities, screenshots, release and downloads, pre-alpha limitations).
+- BUSW Website Builder listed on Products as an upcoming product, marked "In development", with a "Discuss your website" link to the contact page.
+
+### Changed
+- Products page restructured: upcoming product first, then a separate "Development projects" section containing BUSW Flight Companion ("Development project · Public pre-alpha") with an "Explore the project" action.
+- Homepage and About now describe Flight Companion as a development project.
+- Refreshed visual system across all pages: header, navigation, buttons, cards and footer; tighter spacing; full-width product screenshots; lighter red tint for red text so it passes WCAG AA contrast.
+- Contact email changed from `busw.contact@gmail.com` to `contact@busoftwareworks.com` on all pages.
+- Removed the scroll-reveal animation; the mobile menu now closes with Escape.
+
+### Fixed
+- Horizontal overflow at narrow widths: grid minimums are now `min(100%, …)` and the footer links wrap.
+- Removed copy explaining internal brand organization from Products and About.
+
 ## [1.0.0] — 2026-08-03
 
 Initial public release.

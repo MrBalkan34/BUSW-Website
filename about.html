@@ -20,8 +20,8 @@
 
   <header class="site-header">
     <div class="container">
-      <a class="logo" href="index.html" title="Balkan Universal Software Works"><img src="BUSW%20logo.png" alt="Balkan Universal Software Works" /></a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <a class="logo" href="index.html" title="Balkan Universal Software Works"><img src="BUSW%20logo.png" alt="Balkan Universal Software Works" width="56" height="56" /></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
       <nav aria-label="Primary">
         <ul class="nav-list" id="primary-nav">
           <li><a href="index.html">Home</a></li>
@@ -34,29 +34,34 @@
   </header>
 
   <main id="main">
+    <div class="page-header">
+      <div class="container">
+        <h1>About Balkan Universal Software Works</h1>
+      </div>
+    </div>
+
     <section class="section">
       <div class="container">
-        <div class="section-header">
-          <h1>About Balkan Universal Software Works</h1>
+        <div class="prose">
+          <p>
+            BUSW is an independent software studio founded and maintained by
+            Eymen Balkan, who designs, builds, and ships every product end to
+            end.
+          </p>
+          <p>
+            Its public development project is
+            <a href="flight-companion.html">BUSW Flight Companion</a>, a live
+            descent and flight-phase companion for flight simulation. It is
+            built around one principle: everything that can be detected
+            automatically should be, manual input exists only as an override,
+            and the person using it always has final authority.
+          </p>
+          <p>
+            BUSW is also developing a website builder, currently in
+            development. You can read about both on the
+            <a href="products.html">Products</a> page.
+          </p>
         </div>
-
-        <p class="lede">
-          BUSW is an independent software studio founded and maintained by
-          Eymen Balkan, who designs, builds, and ships every product end to
-          end.
-        </p>
-
-        <p class="lede">
-          BUSW's current product is
-          <a href="products.html">BUSW Flight Companion</a>, a live descent
-          and flight-phase companion built around one guiding principle:
-          everything that can be detected automatically should be, manual
-          input exists only as an override, and the person using it always
-          has final authority. That principle comes from Flight Companion's
-          own product philosophy — it's presented here as an example of how
-          BUSW tends to build, not as a formally declared philosophy for
-          BUSW as a whole.
-        </p>
 
         <div class="btn-group">
           <a class="btn btn-secondary" href="https://github.com/BUSW-Software" target="_blank" rel="noopener noreferrer">
@@ -68,15 +73,30 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>&copy; 2026 Balkan Universal Software Works (BUSW)</span>
-      <ul class="footer-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="mailto:busw.contact@gmail.com">busw.contact@gmail.com</a></li>
-      </ul>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-name">Balkan Universal Software Works (BUSW)</p>
+          <p>Independent software studio.</p>
+        </div>
+        <nav aria-label="Footer">
+          <h2 class="footer-heading">Site</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="footer-heading">Contact</h2>
+          <ul class="footer-links">
+            <li><a href="mailto:contact@busoftwareworks.com">contact@busoftwareworks.com</a></li>
+            <li><a href="https://github.com/BUSW-Software" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-legal">&copy; 2026 Balkan Universal Software Works (BUSW)</p>
     </div>
   </footer>
 

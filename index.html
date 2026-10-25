@@ -20,8 +20,8 @@
 
   <header class="site-header">
     <div class="container">
-      <a class="logo" href="index.html" title="Balkan Universal Software Works"><img src="BUSW%20logo.png" alt="Balkan Universal Software Works" /></a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <a class="logo" href="index.html" title="Balkan Universal Software Works"><img src="BUSW%20logo.png" alt="Balkan Universal Software Works" width="56" height="56" /></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
       <nav aria-label="Primary">
         <ul class="nav-list" id="primary-nav">
           <li><a href="index.html" aria-current="page">Home</a></li>
@@ -34,62 +34,92 @@
   </header>
 
   <main id="main">
-    <section class="section hero">
+    <section class="hero">
       <div class="container">
         <h1>Balkan Universal Software Works (BUSW)</h1>
         <p class="tagline">Software, built without shortcuts.</p>
-      </div>
-    </section>
-
-    <section class="section section-alt reveal">
-      <div class="container">
-        <div class="section-header">
-          <span class="eyebrow">Current product</span>
-          <h2>BUSW Flight Companion</h2>
-          <p class="lede">
-            A live Top-of-Descent and flight-phase companion for Microsoft Flight
-            Simulator and X-Plane.
-          </p>
-        </div>
-        <img
-          src="https://github.com/user-attachments/assets/27ff2e91-04a9-4240-a8f3-a904db5fe698"
-          alt="BUSW Flight Companion dashboard showing live telemetry tiles and the descent advisory panel"
-          width="1813"
-          height="985"
-        />
         <div class="btn-group">
-          <a class="btn btn-primary" href="products.html">View Flight Companion</a>
+          <a class="btn btn-primary" href="products.html">View products</a>
+          <a class="btn btn-secondary" href="contact.html">Contact</a>
         </div>
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section section-alt" aria-labelledby="work-heading">
       <div class="container">
-        <div class="section-header">
+        <div class="section-heading">
+          <h2 id="work-heading">Current work</h2>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div><span class="badge badge-status"><span class="nowrap">Upcoming product ·</span> <span class="nowrap">In development</span></span></div>
+            <h3>BUSW Website Builder</h3>
+            <p>
+              A planned tool for creating websites from templates, with
+              editable text and images and responsive previews. The name is
+              provisional.
+            </p>
+            <div class="btn-group">
+              <a class="btn btn-secondary" href="products.html#website-builder">See the product</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <div><span class="badge"><span class="nowrap">Development project ·</span> <span class="nowrap">Public pre-alpha</span></span></div>
+            <h3>BUSW Flight Companion</h3>
+            <p>
+              Live, wind-aware descent planning and flight guidance for
+              Microsoft Flight Simulator and X-Plane.
+            </p>
+            <div class="btn-group">
+              <a class="btn btn-secondary" href="flight-companion.html">Explore the project</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="about-heading">
+      <div class="container">
+        <div class="section-heading">
           <span class="eyebrow">Overview</span>
-          <h2>About BUSW</h2>
+          <h2 id="about-heading">About BUSW</h2>
           <p class="lede">
             BUSW is an independent software studio founded and maintained by
             Eymen Balkan, building focused, purpose-built software.
           </p>
         </div>
-        <div class="btn-group">
-          <a class="btn btn-secondary" href="about.html">More about BUSW</a>
-        </div>
+        <a class="link-arrow" href="about.html">More about BUSW</a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>&copy; 2026 Balkan Universal Software Works (BUSW)</span>
-      <ul class="footer-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="mailto:busw.contact@gmail.com">busw.contact@gmail.com</a></li>
-      </ul>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-name">Balkan Universal Software Works (BUSW)</p>
+          <p>Independent software studio.</p>
+        </div>
+        <nav aria-label="Footer">
+          <h2 class="footer-heading">Site</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="footer-heading">Contact</h2>
+          <ul class="footer-links">
+            <li><a href="mailto:contact@busoftwareworks.com">contact@busoftwareworks.com</a></li>
+            <li><a href="https://github.com/BUSW-Software" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-legal">&copy; 2026 Balkan Universal Software Works (BUSW)</p>
     </div>
   </footer>
 

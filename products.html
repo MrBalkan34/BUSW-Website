@@ -4,15 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Products — Balkan Universal Software Works</title>
-  <meta name="description" content="BUSW Flight Companion v0.4.0 Pre-Alpha — live, wind-aware descent planning and flight guidance for Microsoft Flight Simulator and X-Plane." />
+  <meta name="description" content="Products and development projects from Balkan Universal Software Works (BUSW): the BUSW Website Builder, in development, and BUSW Flight Companion, a public pre-alpha project." />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Balkan Universal Software Works (BUSW)" />
   <meta property="og:title" content="Products — Balkan Universal Software Works" />
-  <meta property="og:description" content="BUSW Flight Companion v0.4.0 Pre-Alpha — live, wind-aware descent planning and flight guidance for Microsoft Flight Simulator and X-Plane." />
+  <meta property="og:description" content="Products and development projects from Balkan Universal Software Works (BUSW): the BUSW Website Builder, in development, and BUSW Flight Companion, a public pre-alpha project." />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Products — Balkan Universal Software Works" />
-  <meta name="twitter:description" content="BUSW Flight Companion v0.4.0 Pre-Alpha — live, wind-aware descent planning and flight guidance for Microsoft Flight Simulator and X-Plane." />
+  <meta name="twitter:description" content="Products and development projects from Balkan Universal Software Works (BUSW): the BUSW Website Builder, in development, and BUSW Flight Companion, a public pre-alpha project." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -20,8 +20,8 @@
 
   <header class="site-header">
     <div class="container">
-      <a class="logo" href="index.html" title="Balkan Universal Software Works"><img src="BUSW%20logo.png" alt="Balkan Universal Software Works" /></a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <a class="logo" href="index.html" title="Balkan Universal Software Works"><img src="BUSW%20logo.png" alt="Balkan Universal Software Works" width="56" height="56" /></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
       <nav aria-label="Primary">
         <ul class="nav-list" id="primary-nav">
           <li><a href="index.html">Home</a></li>
@@ -34,53 +34,99 @@
   </header>
 
   <main id="main">
-    <section class="section">
+    <div class="page-header">
       <div class="container">
-        <div class="section-header">
-          <h1>Products</h1>
-          <p class="lede">
-            One product today, from Balkan Universal Software Works (BUSW).
-            Each product keeps its own identity — this page is BUSW's frame
-            around it, not a rebrand of it.
-          </p>
+        <h1>Products</h1>
+        <p class="lede">
+          A website builder in development, and a flight-simulation project in
+          public pre-alpha.
+        </p>
+      </div>
+    </div>
+
+    <section class="section" id="website-builder" aria-labelledby="upcoming-heading">
+      <div class="container">
+        <div class="section-heading">
+          <h2 id="upcoming-heading">Upcoming product</h2>
         </div>
 
-        <div class="card-grid">
-          <article class="card" id="flight-companion">
-            <div class="product-header">
-              <span class="product-monogram" aria-hidden="true">BFC</span>
-              <div>
-                <h2>BUSW Flight Companion</h2>
-                <span class="badge">v0.4.0 Pre-Alpha — The Copilot</span>
+        <article class="card">
+          <div class="product product-pair">
+            <div class="product-body">
+              <div class="card-title-row">
+                <h3>BUSW Website Builder</h3>
+                <span class="badge badge-status">In development</span>
+              </div>
+              <p class="fine-print">Provisional name.</p>
+              <p>
+                A planned tool to help clients create their own websites. The
+                builder is intended to let you start from a template, edit the
+                text and images directly, and preview how the site adapts to
+                different screen sizes.
+              </p>
+              <div class="btn-group">
+                <a class="btn btn-primary" href="contact.html">Discuss your website</a>
               </div>
             </div>
 
-            <p>
-              BUSW Flight Companion connects directly to your running flight
-              simulator — Microsoft Flight Simulator 2020/2024 or X-Plane — and
-              tells you when to start descending, updating live as you fly
-              instead of giving you a single static number. v0.4.0 — “The
-              Copilot” — adds wind-aware descent planning, STAR altitude-
-              constraint handling, audio guidance, and post-TOD profile
-              monitoring. Automatic flight-phase detection remains available
-              with full manual override, while SimBrief import pulls in your
-              filed route for live distance tracking. It's a focused descent
-              and flight-guidance companion, not a full EFB — currently
-              available as a public Pre-Alpha Windows desktop app.
-            </p>
+            <div class="product-aside">
+              <h4 class="label">Planned capabilities</h4>
+              <ul class="feature-list">
+                <li>Templates to start from</li>
+                <li>Editable text and images</li>
+                <li>Responsive previews</li>
+              </ul>
+              <p class="fine-print">
+                These are planned capabilities. None of them is available yet.
+              </p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-            <ul class="feature-list">
-              <li>Live, wind-aware Top-of-Descent planning</li>
-              <li>STAR altitude-constraint handling</li>
-              <li>Audio flight-guidance callouts</li>
-              <li>Post-TOD descent-profile monitoring</li>
-              <li>9-phase automatic flight-phase detection, with manual override</li>
-              <li>SimBrief route import for live distance-remaining tracking</li>
-              <li>Improved simulator connection and aircraft-profile tracking</li>
-              <li>Native Windows desktop app with Setup and Dev Tools pages</li>
-            </ul>
+    <section class="section" id="development-projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <div class="section-heading">
+          <h2 id="projects-heading">Development projects</h2>
+          <p class="lede">
+            Work in progress that is public and can be tried today, with the
+            limitations that come with it.
+          </p>
+        </div>
 
-            <div class="screenshot-grid">
+        <article class="card" id="flight-companion">
+          <div class="product product-split">
+            <div class="product-body">
+              <div class="product-header">
+                <span class="product-mark" aria-hidden="true">BFC</span>
+                <div>
+                  <h3>BUSW Flight Companion</h3>
+                </div>
+              </div>
+              <div><span class="badge"><span class="nowrap">Development project ·</span> <span class="nowrap">Public pre-alpha</span></span></div>
+              <p>
+                A live descent and flight-guidance companion for Microsoft
+                Flight Simulator and X-Plane. It reads your running simulator
+                and updates continuously as you fly, instead of giving you a
+                single static number.
+              </p>
+              <ul class="feature-list">
+                <li>Live, wind-aware Top-of-Descent planning</li>
+                <li>STAR altitude-constraint handling</li>
+                <li>Audio flight-guidance callouts</li>
+                <li>Post-TOD descent-profile monitoring</li>
+              </ul>
+              <p class="fine-print">
+                Latest release v0.4.0 · Windows 10/11 · For flight simulation
+                use only.
+              </p>
+              <div class="btn-group">
+                <a class="btn btn-primary" href="flight-companion.html">Explore the project</a>
+              </div>
+            </div>
+
+            <figure class="shot">
               <img
                 src="https://github.com/user-attachments/assets/27ff2e91-04a9-4240-a8f3-a904db5fe698"
                 alt="BUSW Flight Companion dashboard showing live telemetry tiles and the descent advisory panel"
@@ -88,51 +134,38 @@
                 height="985"
                 loading="lazy"
               />
-              <img
-                src="https://github.com/user-attachments/assets/bfa13076-c2b3-46a0-9b25-e331f070d279"
-                alt="BUSW Flight Companion Flight Setup page showing aircraft, cruise altitude, and phase selection"
-                width="1898"
-                height="956"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="btn-group">
-              <a class="btn btn-primary" href="https://github.com/MrBalkan34/BUSW-Flight-Companion/releases/download/v0.4.0-pre-alpha/BUSW.Flight.Companion.Setup.0.4.0.exe" target="_blank" rel="noopener noreferrer">
-                Download installer (.exe)
-              </a>
-              <a class="btn btn-secondary" href="https://github.com/MrBalkan34/BUSW-Flight-Companion/releases/download/v0.4.0-pre-alpha/BUSW.Flight.Companion.0.4.0.exe" target="_blank" rel="noopener noreferrer">
-                Download portable (.exe)
-              </a>
-              <a class="btn btn-secondary" href="https://github.com/MrBalkan34/BUSW-Flight-Companion/releases/tag/v0.4.0-pre-alpha" target="_blank" rel="noopener noreferrer">
-                View v0.4.0 release on GitHub
-              </a>
-            </div>
-
-            <p class="meta-list">
-              Windows 10/11 · Microsoft Flight Simulator 2020/2024 or X-Plane
-              11/12 (optional) · Unsigned executable — Windows SmartScreen will
-              show an "unrecognized app" warning on first run. v0.4.0 is
-              Pre-Alpha software and has not yet completed comprehensive
-              validation during a full live MSFS flight; do not use its
-              recommendations as real-world flight-operational guidance.
-            </p>
-          </article>
-        </div>
+            </figure>
+          </div>
+        </article>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <span>&copy; 2026 Balkan Universal Software Works (BUSW)</span>
-      <ul class="footer-nav">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="mailto:busw.contact@gmail.com">busw.contact@gmail.com</a></li>
-      </ul>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <p class="footer-name">Balkan Universal Software Works (BUSW)</p>
+          <p>Independent software studio.</p>
+        </div>
+        <nav aria-label="Footer">
+          <h2 class="footer-heading">Site</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div>
+          <h2 class="footer-heading">Contact</h2>
+          <ul class="footer-links">
+            <li><a href="mailto:contact@busoftwareworks.com">contact@busoftwareworks.com</a></li>
+            <li><a href="https://github.com/BUSW-Software" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-legal">&copy; 2026 Balkan Universal Software Works (BUSW)</p>
     </div>
   </footer>
 

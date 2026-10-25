@@ -1,44 +1,33 @@
-// BUSW — mobile nav toggle + optional reduced-motion-aware scroll reveal.
+// BUSW — mobile navigation toggle.
 
 (function () {
   var toggle = document.querySelector(".nav-toggle");
   var navList = document.querySelector(".nav-list");
 
-  if (toggle && navList) {
-    toggle.addEventListener("click", function () {
-      var isOpen = navList.classList.toggle("is-open");
-      toggle.setAttribute("aria-expanded", String(isOpen));
-      toggle.textContent = isOpen ? "Close" : "Menu";
-    });
+  if (!toggle || !navList) {
+    return;
   }
 
-  var prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+  function setOpen(isOpen) {
+    navList.classList.toggle("is-open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    toggle.textContent = isOpen ? "Close" : "Menu";
+  }
 
-  if (!prefersReducedMotion && "IntersectionObserver" in window) {
-    var revealEls = document.querySelectorAll(".reveal");
+  toggle.addEventListener("click", function () {
+    setOpen(!navList.classList.contains("is-open"));
+  });
 
-    if (revealEls.length) {
-      var observer = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.15 }
-      );
-
-      revealEls.forEach(function (el) {
-        observer.observe(el);
-      });
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && navList.classList.contains("is-open")) {
+      setOpen(false);
+      toggle.focus();
     }
-  } else {
-    document.querySelectorAll(".reveal").forEach(function (el) {
-      el.classList.add("is-visible");
-    });
-  }
+  });
+
+  window.matchMedia("(min-width: 45.0625rem)").addEventListener("change", function (event) {
+    if (event.matches) {
+      setOpen(false);
+    }
+  });
 })();
