@@ -44,18 +44,9 @@ export interface SubmittedInfo {
   fingerprint: string;
 }
 
-/** The saved design in the person's account that this device's design was opened from or last saved to. */
-export interface CloudLink {
-  id: string;
-  revision: number;
-  name: string;
-}
-
 export interface DraftRecord {
   format: 2;
   step: StepId;
   project: unknown;
   submitted: SubmittedInfo | null;
-  /** Absent in drafts saved before accounts existed. */
-  cloud?: CloudLink | null;
 }

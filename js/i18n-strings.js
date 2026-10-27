@@ -13,8 +13,6 @@ window.BUSW_STRINGS = {
   en: {
     "common.skip": "Skip to content",
     "common.langGroup": "Language",
-    "account.signIn": "Sign in",
-    "account.dashboard": "My dashboard",
     "nav.menu": "Menu",
     "nav.close": "Close",
     "nav.primary": "Primary",
@@ -121,8 +119,6 @@ window.BUSW_STRINGS = {
   tr: {
     "common.skip": "İçeriğe geç",
     "common.langGroup": "Dil",
-    "account.signIn": "Giriş yap",
-    "account.dashboard": "Panelim",
     "nav.menu": "Menü",
     "nav.close": "Kapat",
     "nav.primary": "Ana gezinme",

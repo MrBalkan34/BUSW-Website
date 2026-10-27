@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { AccountMenu } from "../account/AccountMenu";
 import { Editor } from "../editor/Editor";
 import { useI18n } from "../i18n/I18nProvider";
 import { LanguageSwitcher } from "../i18n/LanguageSwitcher";
@@ -154,7 +153,6 @@ export function Wizard({ restored, restoreDetail, onDismissRestored }: Props) {
             <strong>BUSW Website Builder</strong> <span className="tag">{t("wizard.brandTag")}</span>
           </p>
           <LanguageSwitcher />
-          <AccountMenu />
           <SaveStatus />
           <EstimateButton />
         </div>

@@ -23,17 +23,6 @@
         "dev"
       ],
       "port": 5174
-    },
-    {
-      "name": "account-server",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "--prefix",
-        "apps/server",
-        "run",
-        "dev"
-      ],
-      "port": 8787
     }
   ]
 }

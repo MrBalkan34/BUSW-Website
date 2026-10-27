@@ -48,15 +48,6 @@ Full detail is in `README.md` under "Languages". What a new maintainer needs:
 - Money is formatted by the price list's locale, not the interface language. Do not change that.
 - There are no accounts, dashboards or staff screens yet, so nothing there is localized. BU Account screens must use `src/i18n` from the start.
 
-## Balkan Universal Account (added 2026-10-27, local and not committed)
-
-Server in `apps/server` (Better Auth + Hono + SQLite), screens in `src/account/`. Read `apps/server/docs/BU-ACCOUNT.md` first: approach, setup, exact founder provisioning, migrations, the future-application guide and what is still needed (server hosting with a disk, an email provider and verified domain, privacy notice and terms). Things to know:
-
-- The submission contract in "Going live" is now implemented by the server (`POST /api/submissions`, signed-in account required). `VITE_SUBMISSION_URL` still overrides it for an external service.
-- The server imports the builder's validators and pricing from `apps/website-builder/src` so the two cannot drift. Keep `model/`, `pricing/` and `submission/verify.ts` free of DOM and React imports.
-- All new screens are translated (English and Turkish). `tests/i18n.test.ts` fails if a Turkish string is missing.
-- The browser caught a bug the component tests missed (an admin response lacked a field the screen needed): after changing an API response, run the real server and click through it, not only the tests.
-
 ## Suggested next steps
 
 1. Owner decides: commit the builder as-is? Suggested files: `apps/website-builder/` (excluding `node_modules`, `dist`), `.gitignore`, `.vercelignore`, `.claude/launch.json`. Not `.claude/settings.local.json`.
@@ -74,7 +65,7 @@ The brief was ambiguous here; current behaviour is deliberate and covered by tes
 3. A **custom-layout page keeps its 6 included sections**; sections beyond 6 on it still add the section charge.
 4. **Photo gallery** is a quantity add-on, not auto-charged when the design has a Gallery section (a hint is shown).
 5. The base package's **standard contact form** is delivered by BUSW; the preview shows contact details only.
-6. ~~The static-copy .zip download~~ **Removed on the owner's instruction (2026-10-27).** The Preview step is read-only. Clients can still save a project file (design data) and, with no account server, the interim brief; neither is a website.
+6. ~~The static-copy .zip download~~ **Removed on the owner's instruction (2026-10-27).** The Preview step is read-only. Clients can still save a project file (design data) and download the interim brief; neither is a website.
 
 Also note: money is formatted with the **region's** locale (en-US / tr-TR / en-IE), never the browser's. Dates use the browser locale.
 

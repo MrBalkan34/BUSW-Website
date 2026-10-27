@@ -104,7 +104,7 @@ describe.each(PAGES)("%s.html", (page) => {
   it("offers the language selector and loads the scripts in order", () => {
     expect(doc.querySelector("[data-lang-switch]")).toBeTruthy();
     const scripts = [...doc.querySelectorAll("script[src]")].map((s) => s.getAttribute("src"));
-    expect(scripts).toEqual(["js/i18n-strings.js", "js/i18n.js", "js/account-nav.js", "js/main.js"]);
+    expect(scripts).toEqual(["js/i18n-strings.js", "js/i18n.js", "js/main.js"]);
   });
 });
 
@@ -121,9 +121,6 @@ describe("every key in the table is used by a page", () => {
       used.add(`meta.${page}.description`);
     }
     used.add("common.langGroup");
-    // The account link is built by js/account-nav.js rather than written in the pages.
-    used.add("account.signIn");
-    used.add("account.dashboard");
     expect(Object.keys(en).filter((key) => !used.has(key))).toEqual([]);
   });
 });
@@ -223,61 +220,5 @@ describe("language behaviour in the browser", () => {
     Object.defineProperty(window, "localStorage", { get() { throw new Error("blocked"); }, configurable: true });
     expect(() => window.eval(`window.BUSW_I18N.setLanguage("tr")`)).not.toThrow();
     expect(window.document.documentElement.lang).toBe("tr");
-  });
-});
-
-describe("the account link on the marketing site", () => {
-  const accountNavSource = read("js/account-nav.js");
-  async function withServer(reply: (() => Promise<unknown>) | null, origin = "https://account.example.test", stored = "") {
-    const html = read("index.html").replace('name="bu-account-origin" content=""', `name="bu-account-origin" content="${origin}"`);
-    const window = new JSDOM(html, { url: "https://www.busoftwareworks.com/", runScripts: "outside-only" }).window;
-    Object.defineProperty(window.navigator, "languages", { value: ["en-US"], configurable: true });
-    if (stored) window.localStorage.setItem("busw.lang", stored);
-    const calls: { url: string; init: unknown }[] = [];
-    (window as unknown as { fetch: unknown }).fetch = (url: string, init: unknown) => {
-      calls.push({ url, init });
-      return reply ? reply() : Promise.reject(new Error("down"));
-    };
-    window.eval(stringsSource);
-    window.eval(scriptSource);
-    window.eval(accountNavSource);
-    await new Promise((r) => setTimeout(r, 0));
-    await new Promise((r) => setTimeout(r, 0));
-    return { window, calls, holder: window.document.querySelector("[data-account-nav]") as HTMLElement };
-  }
-  const json = (body: unknown) => () => Promise.resolve({ ok: true, json: () => Promise.resolve(body) });
-
-  it("shows nothing when no account server is configured, so there are never dead links", async () => {
-    const { holder, calls } = await withServer(json({ signedIn: false }), "");
-    expect(calls).toHaveLength(0);
-    expect(holder.hidden).toBe(true);
-  });
-
-  it("shows nothing when the server cannot be reached", async () => {
-    const { holder } = await withServer(null);
-    expect(holder.hidden).toBe(true);
-  });
-
-  it("offers sign in, carrying the chosen language to the account pages", async () => {
-    const { holder, calls } = await withServer(json({ signedIn: false }), "https://account.example.test/", "tr");
-    expect(calls[0]!.url).toBe("https://account.example.test/api/public/session");
-    expect((calls[0]!.init as { credentials: string }).credentials).toBe("include");
-    expect(holder.hidden).toBe(false);
-    expect(holder.querySelector("a")!.getAttribute("href")).toBe("https://account.example.test/account/sign-in?lang=tr");
-    expect(holder.querySelector("a")!.textContent).toBe("Giriş yap");
-  });
-
-  it("shows the signed-in name and the founder badge as text, never as markup", async () => {
-    const attack = "<img src=x onerror=alert(1)>";
-    const { holder } = await withServer(json({ signedIn: true, name: attack, badge: { label: "Founder · Admin" } }));
-    expect(holder.querySelector("a")!.textContent).toBe(attack);
-    expect(holder.querySelector("img")).toBeNull();
-    expect(holder.querySelector(".founder-badge")!.textContent).toBe("Founder · Admin");
-    expect(holder.querySelector("a")!.getAttribute("href")).toMatch(/^https:\/\/account\.example\.test\/dashboard\?lang=en$/);
-  });
-
-  it("ignores a reply that is not the expected shape", async () => {
-    const { holder } = await withServer(json({ unexpected: true }));
-    expect(holder.hidden).toBe(true);
   });
 });

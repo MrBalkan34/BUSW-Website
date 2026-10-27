@@ -1,11 +1,10 @@
 import type { MessageKey } from "./en";
-import { accountTr } from "./tr.account";
 
 /**
  * Türkçe. Anything missing here falls back to English, so a gap is never shown as a raw key.
  * "BUSW" is read letter by letter, so suffixes follow its last sound: BUSW'ya, BUSW'nun, BUSW'yu.
  */
-const base: Readonly<Partial<Record<MessageKey, string>>> = {
+export const tr: Readonly<Partial<Record<MessageKey, string>>> = {
   // App and shell
   "app.title": "BUSW Website Builder (geliştirme aşamasında)",
   "app.loading": "Yükleniyor…",
@@ -590,4 +589,3 @@ const base: Readonly<Partial<Record<MessageKey, string>>> = {
   "brief.addonsNote": "Seçilen ek hizmetler, müşterinin BUSW'dan teslim etmesini istediği işi kaydeder. Tasarım önizlemesinde çalışmazlar.",
 };
 
-export const tr: Readonly<Partial<Record<MessageKey, string>>> = { ...base, ...accountTr };

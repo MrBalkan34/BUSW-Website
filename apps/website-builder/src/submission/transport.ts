@@ -10,10 +10,6 @@ export const SUBMISSION_URL: string | undefined = (import.meta.env.VITE_SUBMISSI
 
 export type SubmitFailure =
   | { kind: "not-configured"; message: string; retryable: false }
-  /** The person is signed out (or the session ended). Their design is untouched; they sign in and try again. */
-  | { kind: "signed-out"; message: string; retryable: false; status: number }
-  /** Their access to BUSW is restricted, so nothing can be sent. */
-  | { kind: "forbidden"; message: string; retryable: false; status: number }
   /** The request never got an answer: offline, DNS, blocked, or a timeout. */
   | { kind: "network"; message: string; retryable: true; timedOut: boolean }
   /** The service answered but could not take it: 5xx, 429 or a gateway error. */
@@ -32,10 +28,6 @@ export function failureMessage(failure: SubmitFailure, t: TranslateFn): string {
       return t("submit.notConfigured");
     case "network":
       return t(failure.timedOut ? "submit.timeout" : "submit.network");
-    case "signed-out":
-      return t("submit.signedOut");
-    case "forbidden":
-      return t("submit.forbidden");
     case "unconfirmed":
       return t("submit.unconfirmed");
     case "rejected":
@@ -69,7 +61,6 @@ export async function submitToBusw(payload: SubmissionPayload, options: SubmitOp
   try {
     response = await doFetch(options.url, {
       method: "POST",
-      credentials: "include",
       headers: { "Content-Type": "application/json", "Idempotency-Key": payload.submission.submissionId },
       body: JSON.stringify(payload),
       signal: controller.signal,
@@ -100,9 +91,6 @@ export async function submitToBusw(payload: SubmissionPayload, options: SubmitOp
     if (reference !== "" && reference.length <= 100) return { ok: true, reference };
     return { ok: false, kind: "unconfirmed", retryable: true, status: response.status, message: "BUSW's server replied without confirming it stored your submission, so it is not counted as sent. Try again, or download the brief instead." };
   }
-
-  if (response.status === 401) return { ok: false, kind: "signed-out", retryable: false, status: 401, message: "You are signed out, so nothing was sent." };
-  if (response.status === 403) return { ok: false, kind: "forbidden", retryable: false, status: 403, message: "Access to BUSW is restricted for this account, so nothing was sent." };
 
   if (response.status >= 400 && response.status < 500 && response.status !== 408 && response.status !== 429) {
     const errors = Array.isArray(record.errors) ? record.errors.filter((e): e is string => typeof e === "string").slice(0, 10) : [];

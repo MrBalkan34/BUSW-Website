@@ -2,9 +2,7 @@
  * English: the source language and the fallback for every other language. `{name}` marks a value filled in at
  * runtime. A key written as `thing_one` / `thing_other` is a plural pair, chosen by the `count` value.
  */
-import { accountEn } from "./en.account";
-
-const base = {
+export const en = {
   // App and shell
   "app.title": "BUSW Website Builder (in development)",
   "app.loading": "Loading…",
@@ -608,8 +606,6 @@ const base = {
   "brief.hourly": "Out-of-scope work, if agreed in advance: {rate} {currency} per hour.",
   "brief.addonsNote": "Selected add-ons record the work the client has asked BUSW to deliver. They are not working in the design preview.",
 } as const;
-
-export const en = { ...base, ...accountEn } as const;
 
 export type MessageKey = keyof typeof en;
 

@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { CloudSave } from "../account/CloudSave";
 import { useI18n } from "../i18n/I18nProvider";
 import { newId } from "../model/ids";
 import { HOME_SLUG, uniqueSlug } from "../model/order";
@@ -108,7 +107,6 @@ export function Editor() {
             {t("editor.saveFile")}
           </button>
         </div>
-        <CloudSave />
       </div>
 
       <div className="workspace">

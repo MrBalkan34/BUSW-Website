@@ -7,28 +7,20 @@ import { calculateEstimate } from "./pricing/estimate";
 import { loadDraft, saveDraft } from "./storage/db";
 import { placeholderProject } from "./templates/templates";
 import { Wizard } from "./wizard/Wizard";
-import { STEPS, stepIssues, type CloudLink, type DraftRecord, type StepId, type SubmittedInfo } from "./wizard/steps";
-import { AppPages } from "./account/AppPages";
-import { useRoute } from "./account/router";
+import { STEPS, stepIssues, type DraftRecord, type StepId, type SubmittedInfo } from "./wizard/steps";
 import { WorkspaceProvider, type SaveStatus, type Workspace } from "./wizard/workspace";
 
 const STEP_IDS = STEPS.map((s) => s.id) as readonly string[];
 
 /** Reads whatever is in storage: a current draft record, or a bare project from an earlier version. */
-function readDraft(stored: unknown): { project: Project; step: StepId; submitted: SubmittedInfo | null; cloud: CloudLink | null } | { error: string } {
+function readDraft(stored: unknown): { project: Project; step: StepId; submitted: SubmittedInfo | null } | { error: string } {
   const record = stored as Partial<DraftRecord> | null;
   const hasEnvelope = typeof record === "object" && record !== null && record.format === 2;
   const parsed = parseProject(hasEnvelope ? record.project : stored);
   if (!parsed.ok) return { error: parsed.error };
   const step = hasEnvelope && typeof record.step === "string" && STEP_IDS.includes(record.step) ? (record.step as StepId) : "start";
   const submitted = hasEnvelope && isSubmitted(record.submitted) ? record.submitted : null;
-  const cloud = hasEnvelope && isCloud(record.cloud) ? record.cloud : null;
-  return { project: parsed.project, step, submitted, cloud };
-}
-
-function isCloud(value: unknown): value is CloudLink {
-  const v = value as Partial<CloudLink> | null;
-  return typeof v === "object" && v !== null && typeof v.id === "string" && typeof v.revision === "number" && typeof v.name === "string";
+  return { project: parsed.project, step, submitted };
 }
 
 function isSubmitted(value: unknown): value is SubmittedInfo {
@@ -38,7 +30,6 @@ function isSubmitted(value: unknown): value is SubmittedInfo {
 
 export function App() {
   const { t } = useI18n();
-  const route = useRoute();
   const [state, dispatch] = useReducer(reducer, undefined, () => createState(placeholderProject()));
   const [step, setStep] = useState<StepId>("start");
   const [loaded, setLoaded] = useState(false);
@@ -47,7 +38,6 @@ export function App() {
   const [submitted, setSubmitted] = useState<SubmittedInfo | null>(null);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("saved");
   const [showErrors, setShowErrors] = useState(false);
-  const [cloud, setCloud] = useState<CloudLink | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -63,7 +53,6 @@ export function App() {
             dispatch({ type: "load", project: draft.project });
             setStep(draft.step);
             setSubmitted(draft.submitted);
-            setCloud(draft.cloud);
             setRestored("restored");
           }
         }
@@ -90,14 +79,14 @@ export function App() {
     }
     setSaveStatus("saving");
     const timer = setTimeout(() => {
-      const record: DraftRecord = { format: 2, step, project: pruneAssets(project), submitted, cloud };
+      const record: DraftRecord = { format: 2, step, project: pruneAssets(project), submitted };
       saveDraft(record).then(
         () => setSaveStatus("saved"),
         () => setSaveStatus("error"),
       );
     }, 500);
     return () => clearTimeout(timer);
-  }, [loaded, project, step, submitted, cloud]);
+  }, [loaded, project, step, submitted]);
 
   const goto = useCallback((next: StepId) => {
     setStep(next);
@@ -110,33 +99,24 @@ export function App() {
     (next: Project) => {
       dispatch({ type: "load", project: next });
       setSubmitted(null);
-      setCloud(null);
       setRestored("none");
     },
     [],
   );
 
-  const openCloudProject = useCallback((next: Project, link: CloudLink) => {
-    dispatch({ type: "load", project: next });
-    setSubmitted(null);
-    setCloud(link);
-    setRestored("none");
-    setStep("design");
-  }, []);
-
   const estimate = useMemo(() => calculateEstimate(project), [project]);
   const issues = useMemo(() => stepIssues(project, t), [project, t]);
 
   const workspace: Workspace = useMemo(
-    () => ({ state, project, estimate, issues, dispatch, step, goto, setOrder, submitted, setSubmitted, saveStatus, showErrors, setShowErrors, startProject, cloud, setCloud, openCloudProject }),
-    [state, project, estimate, issues, step, goto, setOrder, submitted, saveStatus, showErrors, startProject, cloud, openCloudProject],
+    () => ({ state, project, estimate, issues, dispatch, step, goto, setOrder, submitted, setSubmitted, saveStatus, showErrors, setShowErrors, startProject }),
+    [state, project, estimate, issues, step, goto, setOrder, submitted, saveStatus, showErrors, startProject],
   );
 
   if (!loaded) return <p className="loading">{t("app.loading")}</p>;
 
   return (
     <WorkspaceProvider value={workspace}>
-      {route.name === "builder" ? <Wizard restored={restored} restoreDetail={restoreDetail} onDismissRestored={() => setRestored("none")} /> : <AppPages route={route} />}
+      <Wizard restored={restored} restoreDetail={restoreDetail} onDismissRestored={() => setRestored("none")} />
     </WorkspaceProvider>
   );
 }

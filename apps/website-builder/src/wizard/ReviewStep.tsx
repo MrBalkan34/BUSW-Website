@@ -1,7 +1,4 @@
 import { useMemo, useRef, useState } from "react";
-import { API_BASE } from "../account/api";
-import { Link, navigate, withNext } from "../account/router";
-import { useSession } from "../account/session";
 import { CheckField } from "../editor/controls";
 import { useI18n } from "../i18n/I18nProvider";
 import { fontLabel, paletteLabel, quoteLabel, regionLabel, startingPointLabel } from "../i18n/labels";
@@ -31,12 +28,7 @@ export function ReviewStep() {
   const [send, setSend] = useState<SendState>({ phase: "idle" });
   const [brief, setBrief] = useState<{ filename: string } | null>(null);
   const attempt = useRef<{ id: string; fingerprint: string } | null>(null);
-  const { state: accountState, me } = useSession();
-  // Where a submission goes: an external service if one was configured at build time, else the signed-in account's own
-  // server. Someone who is signed out is asked to sign in first; their design is kept.
-  const endpoint = SUBMISSION_URL ?? (accountState === "signedIn" ? `${API_BASE}/api/submissions` : undefined);
-  const live = endpoint !== undefined;
-  const needsSignIn = SUBMISSION_URL === undefined && accountState === "anonymous";
+  const live = SUBMISSION_URL !== undefined;
 
   const { region } = estimate;
   const ready = isReady(issues) && region !== null;
@@ -65,7 +57,7 @@ export function ReviewStep() {
     if (!canAct) return;
     setSend({ phase: "sending" });
     const payload = snapshot();
-    const result = await submitToBusw(payload, { url: endpoint });
+    const result = await submitToBusw(payload, { url: SUBMISSION_URL });
     if (result.ok) {
       setSubmitted({ reference: result.reference, at: payload.submission.submittedAt, fingerprint: submissionFingerprint(payload) });
       setSend({ phase: "idle" });
@@ -232,11 +224,6 @@ export function ReviewStep() {
                 <h3>{t("review.sentTitle")}</h3>
                 <p>{rich("review.sentBody", { date: formatDate(submitted.at), reference: <strong>{submitted.reference}</strong> })}</p>
                 <p>{t("review.sentNext", { email: project.order.client.email })}</p>
-                {me && SUBMISSION_URL === undefined && (
-                  <p>
-                    {t("submit.account", { name: me.name })} <Link to="/dashboard">{t("acct.menu.dashboard")}</Link>
-                  </p>
-                )}
               </div>
             )}
 
@@ -275,18 +262,6 @@ export function ReviewStep() {
                       {sending ? t("review.sending") : send.phase === "failed" && send.failure.retryable ? t("review.tryAgain") : sentEarlier ? t("review.submitUpdated") : t("review.submit")}
                     </button>
                   </div>
-                ) : needsSignIn ? (
-                  <div className="notice-box">
-                    <p>{t("submit.signInNeeded")}</p>
-                    <div className="row">
-                      <button type="button" className="btn btn-primary" onClick={() => navigate(withNext("/account/sign-in", "/"))}>
-                        {t("submit.signIn")}
-                      </button>
-                      <button type="button" className="btn" onClick={() => navigate(withNext("/account/register", "/"))}>
-                        {t("submit.create")}
-                      </button>
-                    </div>
-                  </div>
                 ) : (
                   <div className="notice-box" aria-labelledby="interim-heading">
                     <h3 id="interim-heading">{t("review.interimTitle")}</h3>
@@ -302,7 +277,7 @@ export function ReviewStep() {
                   </div>
                 )}
 
-                {(live || needsSignIn) && (
+                {live && (
                   <p className="hint">
                     {rich("review.keepCopy", {
                       link: (

@@ -360,44 +360,6 @@ img {
   outline-offset: -3px;
 }
 
-/* Balkan Universal Account link (shown only when an account server is configured) */
-
-[hidden] {
-  display: none !important;
-}
-
-.account-nav {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  margin-left: var(--space-3);
-}
-
-.account-link {
-  color: var(--fg);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-bottom: 2px solid var(--accent);
-  padding: 0.35rem 0;
-  max-width: 12rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.founder-badge {
-  display: inline-block;
-  padding: 0.1rem 0.55rem;
-  background: #3a2a05;
-  color: #ffd37a;
-  border: 1px solid #a67c1a;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
 /* The page is hidden for an instant while the Turkish text replaces the English, then shown. */
 html.i18n-loading body {
   visibility: hidden;
@@ -810,20 +772,10 @@ html.i18n-loading body {
     order: 2;
   }
 
-  .account-nav {
-    order: 1;
-    margin-left: auto;
-  }
-
   .lang-switch {
     order: 1;
-    margin-left: var(--space-1);
-    margin-right: var(--space-1);
-  }
-
-  .account-nav:empty + .lang-switch,
-  .account-nav[hidden] + .lang-switch {
     margin-left: auto;
+    margin-right: var(--space-1);
   }
 
   .nav-list {

@@ -2,7 +2,6 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "../src/App";
-import { SessionProvider } from "../src/account/session";
 import { I18nProvider } from "../src/i18n/I18nProvider";
 import { LOCALE_STORAGE_KEY } from "../src/i18n/storage";
 
@@ -21,9 +20,7 @@ async function mount(): Promise<void> {
   await act(async () => {
     root.render(
       <I18nProvider>
-        <SessionProvider>
-          <App />
-        </SessionProvider>
+        <App />
       </I18nProvider>,
     );
   });
@@ -59,8 +56,6 @@ async function setValue(el: HTMLInputElement | HTMLSelectElement, value: string)
 describe("switching the interface language in the builder", () => {
   beforeEach(() => {
     vi.stubGlobal("ResizeObserver", FakeResizeObserver);
-    // No account server behind this copy of the builder: it must keep working on its own.
-    vi.stubGlobal("fetch", vi.fn(async () => { throw new TypeError("Failed to fetch"); }));
     window.scrollTo = vi.fn();
     window.localStorage.clear();
     window.history.replaceState(null, "", "/");

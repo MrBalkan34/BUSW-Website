@@ -107,10 +107,6 @@ The browser side is finished and tested. To turn on real submission:
 7. **Set `VITE_SUBMISSION_URL`** when building the app (see `.env.example`). With it set, *Submit to BUSW* becomes the primary action.
 8. **Privacy**: the submission contains personal details. Publish a privacy notice and decide retention before going live.
 
-## Accounts
-
-With the account server (`apps/server`) running, clients can create a Balkan Universal Account, save designs to it, send them to BUSW from the Review step (the submission is stored against the account), and follow status and quotes in the dashboard. Staff reach `/admin`. Without a server none of this shows and the builder works exactly as before (local drafts, downloadable brief). In development `npm run dev` proxies `/api` to the server on port 8787; see `apps/server/docs/BU-ACCOUNT.md` for setup, provisioning the founder and the future-application guide. The pages are under `src/account/`; they use the same `src/i18n` dictionaries as the rest of the builder.
-
 ## Languages
 
 The builder's interface is available in **English** and **Türkçe**, with a selector in the header. This is separate from two other things that
@@ -146,7 +142,6 @@ country, the price list, the currency, the add-ons or anything the client typed.
 | `src/export/` | Static-site generation and design checks. The generator is not offered to clients. |
 | `src/storage/` | IndexedDB drafts and project files |
 | `src/i18n/` | Interface languages: dictionaries, translator, provider, selector |
-| `src/account/` | Balkan Universal Account screens, dashboard, administration, session and routing |
 
 Earlier drafts (version 1, single page) are migrated automatically into the home page of a version 2 project.
 
