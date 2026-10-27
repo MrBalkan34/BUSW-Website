@@ -1,0 +1,9 @@
+# Copy to `Caddyfile` next to docker-compose.yml and put your real address in. Caddy gets and renews the https certificate itself.
+# UNTESTED example. The hostname must match APP_ORIGIN in apps/server/.env, and its DNS must point at this machine.
+account.example.com {
+	encode zstd gzip
+	# Caddy overwrites X-Forwarded-For with the real client address, which is what TRUST_PROXY=true relies on.
+	reverse_proxy account:8787 {
+		header_up X-Forwarded-For {remote_host}
+	}
+}

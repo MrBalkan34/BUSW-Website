@@ -4,8 +4,36 @@
     {
       "name": "static-site",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["--yes", "serve", ".", "-l", "4173"],
+      "runtimeArgs": [
+        "--yes",
+        "serve",
+        ".",
+        "-l",
+        "4173"
+      ],
       "port": 4173
+    },
+    {
+      "name": "website-builder",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "apps/website-builder",
+        "run",
+        "dev"
+      ],
+      "port": 5174
+    },
+    {
+      "name": "account-server",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "apps/server",
+        "run",
+        "dev"
+      ],
+      "port": 8787
     }
   ]
 }
