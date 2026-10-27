@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="products">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,30 +14,47 @@
   <meta name="twitter:title" content="Products — Balkan Universal Software Works" />
   <meta name="twitter:description" content="Products and development projects from Balkan Universal Software Works (BUSW): the BUSW Website Builder, in development, and BUSW Flight Companion, a public pre-alpha project." />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Address of the Balkan Universal Account server, once one is running. Empty means: show no account links. -->
+  <meta name="bu-account-origin" content="" />
+  <script>
+    // Hides the page for a moment when the Turkish text is about to replace the English, so it does not flash.
+    (function () {
+      try {
+        var asked = new URLSearchParams(location.search).get("lang");
+        var lang = asked === "tr" || asked === "en" ? asked : localStorage.getItem("busw.lang") || (navigator.language || "").slice(0, 2);
+        if (lang === "tr") {
+          document.documentElement.className += " i18n-loading";
+          setTimeout(function () { document.documentElement.classList.remove("i18n-loading"); }, 1500);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="common.skip">Skip to content</a>
 
   <header class="site-header">
     <div class="container">
       <a class="logo" href="index.html" title="Balkan Universal Software Works"><img src="BUSW%20logo.png" alt="Balkan Universal Software Works" width="56" height="56" /></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
-      <nav aria-label="Primary">
+      <nav aria-label="Primary" data-i18n-attr="aria-label:nav.primary">
         <ul class="nav-list" id="primary-nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="products.html" aria-current="page">Products</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="products.html" aria-current="page" data-i18n="nav.products">Products</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
+      <div class="account-nav" data-account-nav hidden></div>
+      <div class="lang-switch" data-lang-switch></div>
     </div>
   </header>
 
   <main id="main">
     <div class="page-header">
       <div class="container">
-        <h1>Products</h1>
-        <p class="lede">
+        <h1 data-i18n="products.title">Products</h1>
+        <p class="lede" data-i18n="products.lede">
           A website builder in development, and a flight-simulation project in
           public pre-alpha.
         </p>
@@ -47,7 +64,7 @@
     <section class="section" id="website-builder" aria-labelledby="upcoming-heading">
       <div class="container">
         <div class="section-heading">
-          <h2 id="upcoming-heading">Upcoming product</h2>
+          <h2 id="upcoming-heading" data-i18n="products.upcoming">Upcoming product</h2>
         </div>
 
         <article class="card">
@@ -55,28 +72,28 @@
             <div class="product-body">
               <div class="card-title-row">
                 <h3>BUSW Website Builder</h3>
-                <span class="badge badge-status">In development</span>
+                <span class="badge badge-status" data-i18n="badge.inDevelopment">In development</span>
               </div>
-              <p class="fine-print">Provisional name.</p>
-              <p>
+              <p class="fine-print" data-i18n="products.provisional">Provisional name.</p>
+              <p data-i18n="products.builderText">
                 A planned tool to help clients create their own websites. The
                 builder is intended to let you start from a template, edit the
                 text and images directly, and preview how the site adapts to
                 different screen sizes.
               </p>
               <div class="btn-group">
-                <a class="btn btn-primary" href="contact.html">Discuss your website</a>
+                <a class="btn btn-primary" href="contact.html" data-i18n="products.discuss">Discuss your website</a>
               </div>
             </div>
 
             <div class="product-aside">
-              <h4 class="label">Planned capabilities</h4>
+              <h4 class="label" data-i18n="products.planned">Planned capabilities</h4>
               <ul class="feature-list">
-                <li>Templates to start from</li>
-                <li>Editable text and images</li>
-                <li>Responsive previews</li>
+                <li data-i18n="products.cap1">Templates to start from</li>
+                <li data-i18n="products.cap2">Editable text and images</li>
+                <li data-i18n="products.cap3">Responsive previews</li>
               </ul>
-              <p class="fine-print">
+              <p class="fine-print" data-i18n="products.plannedNote">
                 These are planned capabilities. None of them is available yet.
               </p>
             </div>
@@ -88,8 +105,8 @@
     <section class="section" id="development-projects" aria-labelledby="projects-heading">
       <div class="container">
         <div class="section-heading">
-          <h2 id="projects-heading">Development projects</h2>
-          <p class="lede">
+          <h2 id="projects-heading" data-i18n="products.projects">Development projects</h2>
+          <p class="lede" data-i18n="products.projectsLede">
             Work in progress that is public and can be tried today, with the
             limitations that come with it.
           </p>
@@ -104,25 +121,25 @@
                   <h3>BUSW Flight Companion</h3>
                 </div>
               </div>
-              <div><span class="badge"><span class="nowrap">Development project ·</span> <span class="nowrap">Public pre-alpha</span></span></div>
-              <p>
+              <div><span class="badge"><span class="nowrap" data-i18n="badge.project">Development project ·</span> <span class="nowrap" data-i18n="badge.prealpha">Public pre-alpha</span></span></div>
+              <p data-i18n="products.fcText">
                 A live descent and flight-guidance companion for Microsoft
                 Flight Simulator and X-Plane. It reads your running simulator
                 and updates continuously as you fly, instead of giving you a
                 single static number.
               </p>
               <ul class="feature-list">
-                <li>Live, wind-aware Top-of-Descent planning</li>
-                <li>STAR altitude-constraint handling</li>
-                <li>Audio flight-guidance callouts</li>
-                <li>Post-TOD descent-profile monitoring</li>
+                <li data-i18n="fc.f1">Live, wind-aware Top-of-Descent planning</li>
+                <li data-i18n="fc.f2">STAR altitude-constraint handling</li>
+                <li data-i18n="fc.f4">Audio flight-guidance callouts</li>
+                <li data-i18n="fc.f3">Post-TOD descent-profile monitoring</li>
               </ul>
-              <p class="fine-print">
+              <p class="fine-print" data-i18n="products.fcMeta">
                 Latest release v0.4.0 · Windows 10/11 · For flight simulation
                 use only.
               </p>
               <div class="btn-group">
-                <a class="btn btn-primary" href="flight-companion.html">Explore the project</a>
+                <a class="btn btn-primary" href="flight-companion.html" data-i18n="home.explore">Explore the project</a>
               </div>
             </div>
 
@@ -130,6 +147,7 @@
               <img
                 src="https://github.com/user-attachments/assets/27ff2e91-04a9-4240-a8f3-a904db5fe698"
                 alt="BUSW Flight Companion dashboard showing live telemetry tiles and the descent advisory panel"
+                data-i18n-attr="alt:fc.alt1"
                 width="1813"
                 height="985"
                 loading="lazy"
@@ -146,19 +164,19 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <p class="footer-name">Balkan Universal Software Works (BUSW)</p>
-          <p>Independent software studio.</p>
+          <p data-i18n="footer.tagline">Independent software studio.</p>
         </div>
-        <nav aria-label="Footer">
-          <h2 class="footer-heading">Site</h2>
+        <nav aria-label="Footer" data-i18n-attr="aria-label:nav.footer">
+          <h2 class="footer-heading" data-i18n="footer.site">Site</h2>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="products.html" data-i18n="nav.products">Products</a></li>
+            <li><a href="about.html" data-i18n="nav.about">About</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
           </ul>
         </nav>
         <div>
-          <h2 class="footer-heading">Contact</h2>
+          <h2 class="footer-heading" data-i18n="footer.contact">Contact</h2>
           <ul class="footer-links">
             <li><a href="mailto:contact@busoftwareworks.com">contact@busoftwareworks.com</a></li>
             <li><a href="https://github.com/BUSW-Software" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -169,6 +187,9 @@
     </div>
   </footer>
 
+  <script src="js/i18n-strings.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/account-nav.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

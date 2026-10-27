@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="flight-companion">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,42 +14,59 @@
   <meta name="twitter:title" content="BUSW Flight Companion — Balkan Universal Software Works" />
   <meta name="twitter:description" content="BUSW Flight Companion v0.4.0 Pre-Alpha — live, wind-aware descent planning and flight guidance for Microsoft Flight Simulator and X-Plane. A public development project from BUSW." />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Address of the Balkan Universal Account server, once one is running. Empty means: show no account links. -->
+  <meta name="bu-account-origin" content="" />
+  <script>
+    // Hides the page for a moment when the Turkish text is about to replace the English, so it does not flash.
+    (function () {
+      try {
+        var asked = new URLSearchParams(location.search).get("lang");
+        var lang = asked === "tr" || asked === "en" ? asked : localStorage.getItem("busw.lang") || (navigator.language || "").slice(0, 2);
+        if (lang === "tr") {
+          document.documentElement.className += " i18n-loading";
+          setTimeout(function () { document.documentElement.classList.remove("i18n-loading"); }, 1500);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="common.skip">Skip to content</a>
 
   <header class="site-header">
     <div class="container">
       <a class="logo" href="index.html" title="Balkan Universal Software Works"><img src="BUSW%20logo.png" alt="Balkan Universal Software Works" width="56" height="56" /></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
-      <nav aria-label="Primary">
+      <nav aria-label="Primary" data-i18n-attr="aria-label:nav.primary">
         <ul class="nav-list" id="primary-nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="products.html" aria-current="true">Products</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="products.html" aria-current="page" data-i18n="nav.products">Products</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
+      <div class="account-nav" data-account-nav hidden></div>
+      <div class="lang-switch" data-lang-switch></div>
     </div>
   </header>
 
   <main id="main">
     <div class="page-header">
       <div class="container">
-        <a class="back-link" href="products.html#flight-companion">&larr; Products</a>
+        <a class="back-link" href="products.html#flight-companion" data-i18n="fc.back">&larr; Products</a>
         <div class="product-header">
           <span class="product-mark" aria-hidden="true">BFC</span>
-          <span class="badge"><span class="nowrap">Development project ·</span> <span class="nowrap">Public pre-alpha</span></span>
+          <span class="badge"><span class="nowrap" data-i18n="badge.project">Development project ·</span> <span class="nowrap" data-i18n="badge.prealpha">Public pre-alpha</span></span>
         </div>
         <h1>BUSW Flight Companion</h1>
-        <p class="lede">
+        <p class="lede" data-i18n="fc.lede">
           A live descent and flight-guidance companion for Microsoft Flight
           Simulator and X-Plane. It reads your running simulator and updates
           continuously as you fly, instead of giving you a single static
           number. It is a focused companion, not a full EFB.
         </p>
         <div class="btn-group">
-          <a class="btn btn-primary" href="#downloads">Release and downloads</a>
+          <a class="btn btn-primary" href="#downloads" data-i18n="fc.releaseLink">Release and downloads</a>
         </div>
       </div>
     </div>
@@ -57,8 +74,8 @@
     <section class="section" aria-labelledby="capabilities-heading">
       <div class="container">
         <div class="section-heading">
-          <h2 id="capabilities-heading">Key capabilities</h2>
-          <p class="lede">
+          <h2 id="capabilities-heading" data-i18n="fc.capabilities">Key capabilities</h2>
+          <p class="lede" data-i18n="fc.capabilitiesLede">
             Version 0.4.0, “The Copilot”, adds wind-aware descent planning,
             STAR altitude-constraint handling, audio guidance, and post-TOD
             profile monitoring.
@@ -67,26 +84,26 @@
 
         <div class="capability-groups">
           <div class="capability-group">
-            <h3>Descent planning</h3>
+            <h3 data-i18n="fc.groupDescent">Descent planning</h3>
             <ul class="feature-list">
-              <li>Live, wind-aware Top-of-Descent planning</li>
-              <li>STAR altitude-constraint handling</li>
-              <li>Post-TOD descent-profile monitoring</li>
+              <li data-i18n="fc.f1">Live, wind-aware Top-of-Descent planning</li>
+              <li data-i18n="fc.f2">STAR altitude-constraint handling</li>
+              <li data-i18n="fc.f3">Post-TOD descent-profile monitoring</li>
             </ul>
           </div>
           <div class="capability-group">
-            <h3>Guidance and awareness</h3>
+            <h3 data-i18n="fc.groupGuidance">Guidance and awareness</h3>
             <ul class="feature-list">
-              <li>Audio flight-guidance callouts</li>
-              <li>9-phase automatic flight-phase detection, with manual override</li>
+              <li data-i18n="fc.f4">Audio flight-guidance callouts</li>
+              <li data-i18n="fc.f5">9-phase automatic flight-phase detection, with manual override</li>
             </ul>
           </div>
           <div class="capability-group">
-            <h3>Route and simulator</h3>
+            <h3 data-i18n="fc.groupRoute">Route and simulator</h3>
             <ul class="feature-list">
-              <li>SimBrief route import for live distance-remaining tracking</li>
-              <li>Improved simulator connection and aircraft-profile tracking</li>
-              <li>Native Windows desktop app with Setup and Dev Tools pages</li>
+              <li data-i18n="fc.f6">SimBrief route import for live distance-remaining tracking</li>
+              <li data-i18n="fc.f7">Improved simulator connection and aircraft-profile tracking</li>
+              <li data-i18n="fc.f8">Native Windows desktop app with Setup and Dev Tools pages</li>
             </ul>
           </div>
         </div>
@@ -96,8 +113,8 @@
     <section class="section" aria-labelledby="screenshots-heading">
       <div class="container">
         <div class="section-heading">
-          <h2 id="screenshots-heading">Screenshots</h2>
-          <p class="lede">
+          <h2 id="screenshots-heading" data-i18n="fc.screenshots">Screenshots</h2>
+          <p class="lede" data-i18n="fc.screenshotsLede">
             These screenshots come from an earlier pre-alpha release and may
             differ from v0.4.0.
           </p>
@@ -108,21 +125,23 @@
             <img
               src="https://github.com/user-attachments/assets/27ff2e91-04a9-4240-a8f3-a904db5fe698"
               alt="BUSW Flight Companion dashboard showing live telemetry tiles and the descent advisory panel"
+              data-i18n-attr="alt:fc.alt1"
               width="1813"
               height="985"
               loading="lazy"
             />
-            <figcaption>Dashboard — live telemetry tiles and the descent advisory panel.</figcaption>
+            <figcaption data-i18n="fc.cap1">Dashboard — live telemetry tiles and the descent advisory panel.</figcaption>
           </figure>
           <figure class="shot">
             <img
               src="https://github.com/user-attachments/assets/bfa13076-c2b3-46a0-9b25-e331f070d279"
               alt="BUSW Flight Companion Flight Setup page showing aircraft, cruise altitude, and phase selection"
+              data-i18n-attr="alt:fc.alt2"
               width="1898"
               height="956"
               loading="lazy"
             />
-            <figcaption>Flight Setup — aircraft, cruise altitude, and phase selection.</figcaption>
+            <figcaption data-i18n="fc.cap2">Flight Setup — aircraft, cruise altitude, and phase selection.</figcaption>
           </figure>
         </div>
       </div>
@@ -131,32 +150,32 @@
     <section class="section" id="downloads" aria-labelledby="release-heading">
       <div class="container">
         <div class="section-heading">
-          <h2 id="release-heading">Release and downloads</h2>
+          <h2 id="release-heading" data-i18n="fc.release">Release and downloads</h2>
         </div>
 
         <div class="card">
-          <h3>v0.4.0 Pre-Alpha — The Copilot</h3>
+          <h3 data-i18n="fc.releaseTitle">v0.4.0 Pre-Alpha — The Copilot</h3>
 
           <dl class="spec-list">
-            <dt>Platform</dt>
+            <dt data-i18n="fc.platform">Platform</dt>
             <dd>Windows 10/11</dd>
-            <dt>Simulators</dt>
-            <dd>Microsoft Flight Simulator 2020/2024 or X-Plane 11/12 (optional)</dd>
-            <dt>Distribution</dt>
-            <dd>
+            <dt data-i18n="fc.simulators">Simulators</dt>
+            <dd data-i18n="fc.simulatorsValue">Microsoft Flight Simulator 2020/2024 or X-Plane 11/12 (optional)</dd>
+            <dt data-i18n="fc.distribution">Distribution</dt>
+            <dd data-i18n="fc.distributionValue">
               Installer or portable executable. Both are unsigned, so Windows
               SmartScreen will show an “unrecognized app” warning on first run.
             </dd>
           </dl>
 
           <div class="notice">
-            <h4>Pre-alpha limitations</h4>
+            <h4 data-i18n="fc.limits">Pre-alpha limitations</h4>
             <ul>
-              <li>
+              <li data-i18n="fc.limit1">
                 v0.4.0 is Pre-Alpha software and has not yet completed
                 comprehensive validation during a full live MSFS flight.
               </li>
-              <li>
+              <li data-i18n="fc.limit2">
                 Flight Companion is for flight simulation only. Do not use its
                 recommendations as real-world flight-operational guidance.
               </li>
@@ -164,13 +183,13 @@
           </div>
 
           <div class="btn-group">
-            <a class="btn btn-primary" href="https://github.com/MrBalkan34/BUSW-Flight-Companion/releases/download/v0.4.0-pre-alpha/BUSW.Flight.Companion.Setup.0.4.0.exe" target="_blank" rel="noopener noreferrer">
+            <a class="btn btn-primary" href="https://github.com/MrBalkan34/BUSW-Flight-Companion/releases/download/v0.4.0-pre-alpha/BUSW.Flight.Companion.Setup.0.4.0.exe" target="_blank" rel="noopener noreferrer" data-i18n="fc.downloadInstaller">
               Download installer (.exe)
             </a>
-            <a class="btn btn-secondary" href="https://github.com/MrBalkan34/BUSW-Flight-Companion/releases/download/v0.4.0-pre-alpha/BUSW.Flight.Companion.0.4.0.exe" target="_blank" rel="noopener noreferrer">
+            <a class="btn btn-secondary" href="https://github.com/MrBalkan34/BUSW-Flight-Companion/releases/download/v0.4.0-pre-alpha/BUSW.Flight.Companion.0.4.0.exe" target="_blank" rel="noopener noreferrer" data-i18n="fc.downloadPortable">
               Download portable (.exe)
             </a>
-            <a class="btn btn-secondary" href="https://github.com/MrBalkan34/BUSW-Flight-Companion/releases/tag/v0.4.0-pre-alpha" target="_blank" rel="noopener noreferrer">
+            <a class="btn btn-secondary" href="https://github.com/MrBalkan34/BUSW-Flight-Companion/releases/tag/v0.4.0-pre-alpha" target="_blank" rel="noopener noreferrer" data-i18n="fc.viewRelease">
               View v0.4.0 release on GitHub
             </a>
           </div>
@@ -184,19 +203,19 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <p class="footer-name">Balkan Universal Software Works (BUSW)</p>
-          <p>Independent software studio.</p>
+          <p data-i18n="footer.tagline">Independent software studio.</p>
         </div>
-        <nav aria-label="Footer">
-          <h2 class="footer-heading">Site</h2>
+        <nav aria-label="Footer" data-i18n-attr="aria-label:nav.footer">
+          <h2 class="footer-heading" data-i18n="footer.site">Site</h2>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="products.html" data-i18n="nav.products">Products</a></li>
+            <li><a href="about.html" data-i18n="nav.about">About</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
           </ul>
         </nav>
         <div>
-          <h2 class="footer-heading">Contact</h2>
+          <h2 class="footer-heading" data-i18n="footer.contact">Contact</h2>
           <ul class="footer-links">
             <li><a href="mailto:contact@busoftwareworks.com">contact@busoftwareworks.com</a></li>
             <li><a href="https://github.com/BUSW-Software" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -207,6 +226,9 @@
     </div>
   </footer>
 
+  <script src="js/i18n-strings.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/account-nav.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

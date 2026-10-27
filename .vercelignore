@@ -1,0 +1,4 @@
+apps/
+
+deploy/
+.dockerignore

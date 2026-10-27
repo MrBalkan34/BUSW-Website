@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="about">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,41 +14,58 @@
   <meta name="twitter:title" content="About — Balkan Universal Software Works" />
   <meta name="twitter:description" content="Balkan Universal Software Works (BUSW) is an independent software studio currently operated by a single freelance developer." />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Address of the Balkan Universal Account server, once one is running. Empty means: show no account links. -->
+  <meta name="bu-account-origin" content="" />
+  <script>
+    // Hides the page for a moment when the Turkish text is about to replace the English, so it does not flash.
+    (function () {
+      try {
+        var asked = new URLSearchParams(location.search).get("lang");
+        var lang = asked === "tr" || asked === "en" ? asked : localStorage.getItem("busw.lang") || (navigator.language || "").slice(0, 2);
+        if (lang === "tr") {
+          document.documentElement.className += " i18n-loading";
+          setTimeout(function () { document.documentElement.classList.remove("i18n-loading"); }, 1500);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="common.skip">Skip to content</a>
 
   <header class="site-header">
     <div class="container">
       <a class="logo" href="index.html" title="Balkan Universal Software Works"><img src="BUSW%20logo.png" alt="Balkan Universal Software Works" width="56" height="56" /></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
-      <nav aria-label="Primary">
+      <nav aria-label="Primary" data-i18n-attr="aria-label:nav.primary">
         <ul class="nav-list" id="primary-nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="about.html" aria-current="page">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="products.html" data-i18n="nav.products">Products</a></li>
+          <li><a href="about.html" aria-current="page" data-i18n="nav.about">About</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
+      <div class="account-nav" data-account-nav hidden></div>
+      <div class="lang-switch" data-lang-switch></div>
     </div>
   </header>
 
   <main id="main">
     <div class="page-header">
       <div class="container">
-        <h1>About Balkan Universal Software Works</h1>
+        <h1 data-i18n="about.title">About Balkan Universal Software Works</h1>
       </div>
     </div>
 
     <section class="section">
       <div class="container">
         <div class="prose">
-          <p>
+          <p data-i18n="about.p1">
             BUSW is an independent software studio founded and maintained by
             Eymen Balkan, who designs, builds, and ships every product end to
             end.
           </p>
-          <p>
+          <p data-i18n-html="about.p2">
             Its public development project is
             <a href="flight-companion.html">BUSW Flight Companion</a>, a live
             descent and flight-phase companion for flight simulation. It is
@@ -56,7 +73,7 @@
             automatically should be, manual input exists only as an override,
             and the person using it always has final authority.
           </p>
-          <p>
+          <p data-i18n-html="about.p3">
             BUSW is also developing a website builder, currently in
             development. You can read about both on the
             <a href="products.html">Products</a> page.
@@ -64,7 +81,7 @@
         </div>
 
         <div class="btn-group">
-          <a class="btn btn-secondary" href="https://github.com/BUSW-Software" target="_blank" rel="noopener noreferrer">
+          <a class="btn btn-secondary" href="https://github.com/BUSW-Software" target="_blank" rel="noopener noreferrer" data-i18n="about.github">
             View BUSW's GitHub profile
           </a>
         </div>
@@ -77,19 +94,19 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <p class="footer-name">Balkan Universal Software Works (BUSW)</p>
-          <p>Independent software studio.</p>
+          <p data-i18n="footer.tagline">Independent software studio.</p>
         </div>
-        <nav aria-label="Footer">
-          <h2 class="footer-heading">Site</h2>
+        <nav aria-label="Footer" data-i18n-attr="aria-label:nav.footer">
+          <h2 class="footer-heading" data-i18n="footer.site">Site</h2>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="products.html" data-i18n="nav.products">Products</a></li>
+            <li><a href="about.html" data-i18n="nav.about">About</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
           </ul>
         </nav>
         <div>
-          <h2 class="footer-heading">Contact</h2>
+          <h2 class="footer-heading" data-i18n="footer.contact">Contact</h2>
           <ul class="footer-links">
             <li><a href="mailto:contact@busoftwareworks.com">contact@busoftwareworks.com</a></li>
             <li><a href="https://github.com/BUSW-Software" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -100,6 +117,9 @@
     </div>
   </footer>
 
+  <script src="js/i18n-strings.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/account-nav.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

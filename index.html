@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="index">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,22 +14,39 @@
   <meta name="twitter:title" content="Balkan Universal Software Works (BUSW)" />
   <meta name="twitter:description" content="Balkan Universal Software Works (BUSW) is an independent software studio operated by a single freelance developer. Software, built without shortcuts." />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Address of the Balkan Universal Account server, once one is running. Empty means: show no account links. -->
+  <meta name="bu-account-origin" content="" />
+  <script>
+    // Hides the page for a moment when the Turkish text is about to replace the English, so it does not flash.
+    (function () {
+      try {
+        var asked = new URLSearchParams(location.search).get("lang");
+        var lang = asked === "tr" || asked === "en" ? asked : localStorage.getItem("busw.lang") || (navigator.language || "").slice(0, 2);
+        if (lang === "tr") {
+          document.documentElement.className += " i18n-loading";
+          setTimeout(function () { document.documentElement.classList.remove("i18n-loading"); }, 1500);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main" data-i18n="common.skip">Skip to content</a>
 
   <header class="site-header">
     <div class="container">
       <a class="logo" href="index.html" title="Balkan Universal Software Works"><img src="BUSW%20logo.png" alt="Balkan Universal Software Works" width="56" height="56" /></a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
-      <nav aria-label="Primary">
+      <nav aria-label="Primary" data-i18n-attr="aria-label:nav.primary">
         <ul class="nav-list" id="primary-nav">
-          <li><a href="index.html" aria-current="page">Home</a></li>
-          <li><a href="products.html">Products</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" aria-current="page" data-i18n="nav.home">Home</a></li>
+          <li><a href="products.html" data-i18n="nav.products">Products</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
+      <div class="account-nav" data-account-nav hidden></div>
+      <div class="lang-switch" data-lang-switch></div>
     </div>
   </header>
 
@@ -37,10 +54,10 @@
     <section class="hero">
       <div class="container">
         <h1>Balkan Universal Software Works (BUSW)</h1>
-        <p class="tagline">Software, built without shortcuts.</p>
+        <p class="tagline" data-i18n="home.tagline">Software, built without shortcuts.</p>
         <div class="btn-group">
-          <a class="btn btn-primary" href="products.html">View products</a>
-          <a class="btn btn-secondary" href="contact.html">Contact</a>
+          <a class="btn btn-primary" href="products.html" data-i18n="home.viewProducts">View products</a>
+          <a class="btn btn-secondary" href="contact.html" data-i18n="home.contact">Contact</a>
         </div>
       </div>
     </section>
@@ -48,32 +65,32 @@
     <section class="section section-alt" aria-labelledby="work-heading">
       <div class="container">
         <div class="section-heading">
-          <h2 id="work-heading">Current work</h2>
+          <h2 id="work-heading" data-i18n="home.currentWork">Current work</h2>
         </div>
 
         <div class="grid-2">
           <article class="card">
-            <div><span class="badge badge-status"><span class="nowrap">Upcoming product ·</span> <span class="nowrap">In development</span></span></div>
+            <div><span class="badge badge-status"><span class="nowrap" data-i18n="badge.upcoming">Upcoming product ·</span> <span class="nowrap" data-i18n="badge.inDevelopment">In development</span></span></div>
             <h3>BUSW Website Builder</h3>
-            <p>
+            <p data-i18n="home.builderText">
               A planned tool for creating websites from templates, with
               editable text and images and responsive previews. The name is
               provisional.
             </p>
             <div class="btn-group">
-              <a class="btn btn-secondary" href="products.html#website-builder">See the product</a>
+              <a class="btn btn-secondary" href="products.html#website-builder" data-i18n="home.seeProduct">See the product</a>
             </div>
           </article>
 
           <article class="card">
-            <div><span class="badge"><span class="nowrap">Development project ·</span> <span class="nowrap">Public pre-alpha</span></span></div>
+            <div><span class="badge"><span class="nowrap" data-i18n="badge.project">Development project ·</span> <span class="nowrap" data-i18n="badge.prealpha">Public pre-alpha</span></span></div>
             <h3>BUSW Flight Companion</h3>
-            <p>
+            <p data-i18n="home.fcText">
               Live, wind-aware descent planning and flight guidance for
               Microsoft Flight Simulator and X-Plane.
             </p>
             <div class="btn-group">
-              <a class="btn btn-secondary" href="flight-companion.html">Explore the project</a>
+              <a class="btn btn-secondary" href="flight-companion.html" data-i18n="home.explore">Explore the project</a>
             </div>
           </article>
         </div>
@@ -83,14 +100,14 @@
     <section class="section" aria-labelledby="about-heading">
       <div class="container">
         <div class="section-heading">
-          <span class="eyebrow">Overview</span>
-          <h2 id="about-heading">About BUSW</h2>
-          <p class="lede">
+          <span class="eyebrow" data-i18n="home.overview">Overview</span>
+          <h2 id="about-heading" data-i18n="home.aboutHeading">About BUSW</h2>
+          <p class="lede" data-i18n="home.aboutLede">
             BUSW is an independent software studio founded and maintained by
             Eymen Balkan, building focused, purpose-built software.
           </p>
         </div>
-        <a class="link-arrow" href="about.html">More about BUSW</a>
+        <a class="link-arrow" href="about.html" data-i18n="home.moreAbout">More about BUSW</a>
       </div>
     </section>
   </main>
@@ -100,19 +117,19 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <p class="footer-name">Balkan Universal Software Works (BUSW)</p>
-          <p>Independent software studio.</p>
+          <p data-i18n="footer.tagline">Independent software studio.</p>
         </div>
-        <nav aria-label="Footer">
-          <h2 class="footer-heading">Site</h2>
+        <nav aria-label="Footer" data-i18n-attr="aria-label:nav.footer">
+          <h2 class="footer-heading" data-i18n="footer.site">Site</h2>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="products.html" data-i18n="nav.products">Products</a></li>
+            <li><a href="about.html" data-i18n="nav.about">About</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
           </ul>
         </nav>
         <div>
-          <h2 class="footer-heading">Contact</h2>
+          <h2 class="footer-heading" data-i18n="footer.contact">Contact</h2>
           <ul class="footer-links">
             <li><a href="mailto:contact@busoftwareworks.com">contact@busoftwareworks.com</a></li>
             <li><a href="https://github.com/BUSW-Software" target="_blank" rel="noopener noreferrer">GitHub</a></li>
@@ -123,6 +140,9 @@
     </div>
   </footer>
 
+  <script src="js/i18n-strings.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/account-nav.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

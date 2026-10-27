@@ -5,6 +5,8 @@ All notable changes to the BUSW website are recorded here.
 ## [Unreleased]
 
 ### Added
+- Balkan Universal Account (BU Account): registration with email verification, sign in, password recovery, two-step verification, account settings and session management; a client dashboard (saved designs, submissions, quotes); BUSW and account administration with an audit history; and an optional account link in the site navigation that appears only once an account server address is configured. Runs from the new `apps/server` (see `apps/server/docs/BU-ACCOUNT.md`). The marketing pages and the builder keep working with no server.
+- Turkish (Türkçe) alongside English, with an English / Türkçe selector in the header of every page. The choice is remembered across pages and visits, sets the page language and updates the title and descriptions. A `?lang=tr` link opens a page in Turkish. Page addresses are unchanged. (The first visit follows the browser language.)
 - `flight-companion.html`: details page for BUSW Flight Companion (key capabilities, screenshots, release and downloads, pre-alpha limitations).
 - BUSW Website Builder listed on Products as an upcoming product, marked "In development", with a "Discuss your website" link to the contact page.
 
