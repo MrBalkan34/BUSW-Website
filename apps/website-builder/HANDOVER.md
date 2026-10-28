@@ -4,18 +4,23 @@ Written 2026-10-25 at the end of a long session. Read this first, then `README.m
 
 ## Where things stand
 
-- The builder is **built, tested and verified in a browser, but NOT committed and NOT deployed.**
-- The marketing site (`index/products/about/contact/flight-companion.html`) is **live and unchanged** by this work. Last pushed commit on `main`: `58e9bab` (redesign + Products restructure + contact email `contact@busoftwareworks.com`). Hosting: Vercel, deploying from GitHub `MrBalkan34/BUSW-Website`, `main`.
-- Uncommitted work in the repo (all of it this builder work):
-  - `apps/` (the whole app), `.gitignore`, `.vercelignore` (contains `apps/` so the builder is **not** deployed with the marketing site)
-  - `.claude/launch.json` (adds a `website-builder` entry)
-  - `.claude/settings.local.json` is tool noise (permission allowlist). **Do not commit it.** Also never commit `desktop.ini`.
-- Checks at hand-off: `npm run typecheck` clean, `npm test` 262 passing, `npm run build` OK (JS 549 kB, 171 kB gzipped).
+Updated 2026-10-28 (final state of the "early preview" release). The sections below this one are from 2026-10-25; where they disagree with this one, this one wins.
+
+- **The builder is live-ready as an early preview at `/builder/`, served by the marketing site** (same Vercel project, same origin). Products and the homepage link to it ("Open the builder"). Because it shares the site's origin it also shares the `busw.lang` language choice, so no `?lang=` hand-over is needed.
+- **How it is served:** `npm run build` (in `apps/website-builder`) typechecks and writes the app to `../../builder` with base `/builder/`. **That generated `/builder` directory is committed**, because the host serves plain static files with no build step. `.vercelignore` still excludes `apps/` (source is not deployed). **After any change to the builder source, run `npm run build` and commit `/builder` too, or the live copy is stale.** The built copy contains no submission URL (`VITE_SUBMISSION_URL` is unset).
+- **Submission is NOT connected.** The Review step says so explicitly (English and Turkish): downloading the project brief sends nothing to BUSW; the client must email the downloaded `.zip` to contact@busoftwareworks.com as an attachment, and BUSW only learns of the project when that email arrives. There is no reference number and no receipt. Do not soften this wording while there is no server. **Still untested: that the mailbox contact@busoftwareworks.com actually receives mail.**
+- **BU Account is postponed until the owner has a server.** The account server and its screens are intact on the `accounts` branch (commits `e58473f`, `ca58fc2`). Do not start account work and do not merge that branch. `apps/server/` on `main` holds only an ignored local `data/` folder (dev database and `dev.secret`) and `node_modules`.
+- **Ignore rules:** `.gitignore` ignores `apps/server/data/`, `.env` / `.env.*` (but not `.env.example`), `*.sqlite*`, `*.secret` and `.claude/settings.local.json`. The latter is no longer tracked; the local file remains. Never commit `desktop.ini`.
+- **Checks at this state:** `npm run typecheck` clean, `npm test` 336 passing (11 files), `npm run build` OK (JS 616 kB, 189 kB gzipped; Vite warns the chunk is over 500 kB).
+- **Verified by hand in Chromium (2026-10-28):** Products and homepage links open `/builder/`; `/builder` and `/builder/` both load; the language chosen on the site carries into the builder (Turkish checked); the Review step shows the new notice in both languages; the brief download produces `busw-brief-<name>-<date>.zip` containing `brief.html`, `submission.json` and `design.busw-site.json`. **Not tested:** Firefox, Safari, a real phone, the mailbox, and links between pages inside the preview (the only template tried has one page).
+- **Known small issue:** the brief file name drops non-ASCII letters, so "Örnek Kafe" becomes `busw-brief-rnek-kafe-…zip`. Harmless, but worth transliterating Turkish letters (ö ü ş ç ğ ı) in the slug in `src/submission/brief.ts`.
+- The builder is `noindex` (see `apps/website-builder/index.html`) while it is an early preview.
+- Hosting: Vercel, deploying from GitHub `MrBalkan34/BUSW-Website`, `main`. At the time of writing, the commits after `58e9bab` (Turkish/English site, the builder, this release) are **not pushed**.
 
 ## What the owner (Eymen Balkan) wants
 
 - BUSW is an **independent studio run by one freelance developer**, not a company or corporation. Avoid wording that implies otherwise.
-- **Honesty over polish**: never claim something was sent, received, built or working when it was not. The Products page says the builder is "In development" and that none of its capabilities exist yet; keep that true until it is launched.
+- **Honesty over polish**: never claim something was sent, received, built or working when it was not. The Products page calls the builder an "Early preview" and says it does not publish, take payments or submit online; keep that true until it changes.
 - **Only commit, push or deploy when explicitly asked.** The owner has been precise about which files to stage.
 - Business model for the builder: clients design a site, pick paid add-ons, see an estimate, and **submit to BUSW**; BUSW reviews and confirms scope and price before work starts. No self-service publishing, no payments in v1.
 
@@ -46,15 +51,16 @@ Full detail is in `README.md` under "Languages". What a new maintainer needs:
   "Page N" placeholders for added items), the exported site's own fixed words ("Skip to content", "Email", "Phone", "Address"; these belong to the
   client's site and its `site.lang`), technical file-validation details, server error lists returned by a submission service.
 - Money is formatted by the price list's locale, not the interface language. Do not change that.
-- There are no accounts, dashboards or staff screens yet, so nothing there is localized. BU Account screens must use `src/i18n` from the start.
+- There are no accounts, dashboards or staff screens on `main` (the postponed BU Account work is on the `accounts` branch), so nothing there is localized. Any BU Account screens must use `src/i18n` from the start.
 
 ## Suggested next steps
 
-1. Owner decides: commit the builder as-is? Suggested files: `apps/website-builder/` (excluding `node_modules`, `dist`), `.gitignore`, `.vercelignore`, `.claude/launch.json`. Not `.claude/settings.local.json`.
-2. Owner confirms the **six pricing interpretations** below (change them in `catalogue.ts` / `estimate.ts` and the tests if wrong).
-3. Plan and build the submission service (above), then wire the env var.
-4. Test in Firefox and Safari (only Chromium was tested). Check on a real phone.
-5. Decide how/where the builder itself gets deployed. It is deliberately excluded from the marketing site's Vercel deploy, so it needs its own project or a config change.
+1. Push the release when the owner asks (nothing is pushed or deployed yet), then open `/builder/` on the live site and re-check the Products and homepage links.
+2. Confirm the mailbox contact@busoftwareworks.com receives mail, since the interim brief depends on it.
+3. Owner confirms the **six pricing interpretations** below (change them in `catalogue.ts` / `estimate.ts` and the tests if wrong).
+4. Plan and build the submission service (above) once there is a server, then wire `VITE_SUBMISSION_URL`. BU Account stays postponed until then.
+5. Test in Firefox and Safari (only Chromium was tested). Check on a real phone.
+6. Transliterate Turkish letters in the brief file name (see "Where things stand").
 
 ## Pricing interpretations awaiting confirmation
 

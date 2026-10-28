@@ -4,3 +4,17 @@ dist/
 .DS_Store
 .env.local
 .env.*.local
+
+# Local databases, secrets and environment files. The account server (apps/server) is postponed and its source
+# lives on the "accounts" branch; only its local data is ignored here, never its code.
+apps/server/data/
+.env
+.env.*
+!.env.example
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.secret
+
+# Local Claude Code settings (per machine)
+.claude/settings.local.json

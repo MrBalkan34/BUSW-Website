@@ -4,7 +4,7 @@
  */
 export const en = {
   // App and shell
-  "app.title": "BUSW Website Builder (in development)",
+  "app.title": "BUSW Website Builder (early preview)",
   "app.loading": "Loading…",
   "lang.switcher": "Interface language",
   "common.close": "Close",
@@ -19,7 +19,7 @@ export const en = {
   "common.notChosen": "Not chosen",
   "common.required": "(required)",
 
-  "wizard.brandTag": "In development",
+  "wizard.brandTag": "Early preview",
   "wizard.skip": "Skip to content",
   "wizard.stepsNav": "Steps",
   "wizard.goToStep": "Go to step",
@@ -549,17 +549,17 @@ export const en = {
   "review.tryAgain": "Try again",
   "review.submitUpdated": "Submit updated version",
   "review.submit": "Submit to BUSW",
-  "review.interimTitle": "Online submission is not connected yet",
-  "review.interimBody": "BUSW's submission service is not live in this early version, so nothing can be sent from this page. As an interim option, download your project brief and email it to {email}. It contains your design, add-ons, estimate and images.",
-  "review.interimButton": "Interim option: download project brief",
+  "review.interimTitle": "Nothing is sent to BUSW from this page",
+  "review.interimBody": "Online submission is not connected yet. Downloading the project brief does not send anything to BUSW: you must email the downloaded file to {email} yourself. BUSW only learns about your project when that email arrives. The brief contains your design, add-ons, estimate and images.",
+  "review.interimButton": "Download project brief",
   "review.submitUnavailable": "Submit to BUSW (not available yet)",
   "review.keepCopy": "Prefer to keep a copy? {link}.",
   "review.downloadBrief": "Download the project brief",
   "review.fixItems": "Fix the items listed above to continue.",
   "review.tickBox": "Tick the box above to continue.",
   "review.briefSaved": "Brief saved to your device as {filename}.",
-  "review.briefNotSent": "It has not been sent to BUSW.",
-  "review.briefEmail": " Email it to {email} so BUSW can review it.",
+  "review.briefNotSent": "It has NOT been sent to BUSW.",
+  "review.briefEmail": " To start your project, email this file to {email} as an attachment. BUSW will not receive it any other way.",
 
   // Submission failures
   "submit.notConfigured": "Online submission is not connected yet.",
@@ -573,7 +573,7 @@ export const en = {
   "brief.title": "Project brief: {business}",
   "brief.h1": "Website project brief",
   "brief.notice": "Interim brief. Not yet submitted.",
-  "brief.noticeBody": " This file was created on the client's device. BUSW has not received it unless the client sends it, for example by email to {email}.",
+  "brief.noticeBody": " This file was created on the client's device, and downloading it sends nothing. BUSW has not received it unless the client emails it, for example to {email}.",
   "brief.client": "Client",
   "brief.business": "Business",
   "brief.contact": "Contact",

@@ -87,7 +87,7 @@ describe("switching the interface language in the builder", () => {
     await mount();
     await click(buttonByText("Türkçe"));
     expect(document.documentElement.lang).toBe("tr");
-    expect(document.title).toBe("BUSW Website Builder (geliştirme aşamasında)");
+    expect(document.title).toBe("BUSW Website Builder (erken önizleme)");
     expect($("h1").textContent).toBe("Web sitenizi başlatın");
     expect(window.localStorage.getItem(LOCALE_STORAGE_KEY)).toBe("tr");
     expect(buttonByText("Türkçe").getAttribute("aria-pressed")).toBe("true");

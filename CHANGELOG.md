@@ -5,9 +5,10 @@ All notable changes to the BUSW website are recorded here.
 ## [Unreleased]
 
 ### Added
+- The BUSW Website Builder is available as an early preview at `/builder/`, served by this site (built copy committed in `builder/`; source in `apps/website-builder`). Products and the homepage link to it with an "Open the builder" button and describe what it does today: no publishing and no payments, online submission not connected (clients download a project brief and email it to BUSW). It shares the site's language choice.
 - Turkish (Türkçe) alongside English, with an English / Türkçe selector in the header of every page. The choice is remembered across pages and visits, sets the page language and updates the title and descriptions. A `?lang=tr` link opens a page in Turkish. Page addresses are unchanged. (The first visit follows the browser language.)
 - `flight-companion.html`: details page for BUSW Flight Companion (key capabilities, screenshots, release and downloads, pre-alpha limitations).
-- BUSW Website Builder listed on Products as an upcoming product, marked "In development", with a "Discuss your website" link to the contact page.
+- BUSW Website Builder listed on Products (now marked "Early preview") with a "Discuss your website" link to the contact page.
 
 ### Changed
 - Products page restructured: upcoming product first, then a separate "Development projects" section containing BUSW Flight Companion ("Development project · Public pre-alpha") with an "Explore the project" action.

@@ -1,4 +1,4 @@
-# BUSW Website Builder (in development)
+# BUSW Website Builder (early preview)
 
 A local-first website builder for BUSW's clients. A client picks a country and template, edits the site, previews it on
 desktop and mobile, chooses paid add-ons, reviews an itemized estimate, and **submits the finished design to BUSW**. BUSW
@@ -6,8 +6,10 @@ reviews the submission and confirms scope and price before any work starts.
 
 This first version does **not** publish websites and does **not** take payments.
 
-> Status: pre-release and **not deployed**. `apps/` is excluded from the marketing site's Vercel deploy by `/.vercelignore`,
-> and the Products page still describes the builder as "In development".
+> Status: **early preview, served by the marketing site at `/builder/`.** The source stays out of the Vercel deploy
+> (`/.vercelignore` excludes `apps/`); what is deployed is the built copy in `/builder` at the repository root, which is
+> committed. **Run `npm run build` and commit `/builder` whenever the builder changes**, or the live copy will be stale.
+> Online submission is not connected: clients download a project brief and email it to BUSW.
 
 ## Run it
 
@@ -17,7 +19,7 @@ npm install
 npm run dev        # http://localhost:5174
 npm test           # unit tests (Vitest)
 npm run typecheck
-npm run build      # typecheck + production build into dist/
+npm run build      # typecheck + production build into ../../builder (served at /builder/)
 ```
 
 Needs Node 20.19+ (developed on Node 24).
