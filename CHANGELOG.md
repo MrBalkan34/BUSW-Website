@@ -17,6 +17,8 @@ All notable changes to the BUSW website are recorded here.
 - Contact email changed from `busw.contact@gmail.com` to `contact@busoftwareworks.com` on all pages.
 - Removed the scroll-reveal animation; the mobile menu now closes with Escape.
 
+- Link previews now use the current BUSW logo: a 1200 x 630 image (`assets/busw-social-preview-v2.png`) referenced by absolute `og:image` / `twitter:image` URLs with type, size and alt text, and the Twitter/X card is now `summary_large_image`. Before this, no page declared a preview image. The browser favicon and the touch icon (`assets/busw-icon-v2-32.png`, `assets/busw-icon-v2-180.png`) now use the "B|" from the current logo instead of the old red "B" on black, and `assets/favicon.svg` is removed. External services may keep showing the previous preview until they refresh their cache.
+
 ### Fixed
 - Horizontal overflow at narrow widths: grid minimums are now `min(100%, …)` and the footer links wrap.
 - Removed copy explaining internal brand organization from Products and About.
