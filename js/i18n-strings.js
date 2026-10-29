@@ -38,6 +38,7 @@ window.BUSW_STRINGS = {
 
     "badge.product": "Product ·",
     "badge.earlyPreview": "Early preview",
+    "badge.inDevelopment": "In development",
     "badge.project": "Development project ·",
     "badge.prealpha": "Public pre-alpha",
 
@@ -78,8 +79,9 @@ window.BUSW_STRINGS = {
     "products.cap4": "Add-ons and an itemized estimate",
     "products.previewNote": "This is an early preview. It does not publish websites or take payments, and online submission is not connected yet: you download a project brief and email it to BUSW. Your work is saved only on your own device.",
     "products.projects": "Development projects",
-    "products.projectsLede": "Work in progress that is public and can be tried today, with the limitations that come with it.",
+    "products.projectsLede": "Work in progress. Some of it can be tried today, with the limitations that come with it; some is still in development and cannot be used yet.",
     "products.fcText": "A live descent and flight-guidance companion for Microsoft Flight Simulator and X-Plane. It reads your running simulator and updates continuously as you fly, instead of giving you a single static number.",
+    "products.eabText": "A planned tool for building desktop applications with Electron. The project has only just been started: there is no working version, preview or release date yet.",
     "products.fcMeta": "Latest release v0.4.0 · Windows 10/11 · For flight simulation use only.",
 
     "fc.back": "← Products",
@@ -147,6 +149,7 @@ window.BUSW_STRINGS = {
 
     "badge.product": "Ürün ·",
     "badge.earlyPreview": "Erken önizleme",
+    "badge.inDevelopment": "Geliştirme aşamasında",
     "badge.project": "Geliştirme projesi ·",
     "badge.prealpha": "Herkese açık ön alfa",
 
@@ -187,8 +190,9 @@ window.BUSW_STRINGS = {
     "products.cap4": "Ek hizmetler ve kalem kalem tahmini fiyat",
     "products.previewNote": "Bu bir erken önizlemedir. Web sitesi yayınlamaz ve ödeme almaz; çevrim içi gönderim de henüz bağlı değildir: bir proje özeti indirip BUSW'ya e-postayla gönderirsiniz. Çalışmanız yalnızca kendi cihazınızda saklanır.",
     "products.projects": "Geliştirme projeleri",
-    "products.projectsLede": "Herkese açık olan ve bugün denenebilen, ancak beraberinde sınırlamalar getiren devam eden çalışmalar.",
+    "products.projectsLede": "Devam eden çalışmalar. Bir kısmı bugün, beraberinde getirdiği sınırlamalarla birlikte denenebilir; bir kısmı ise henüz geliştirme aşamasındadır ve kullanılamaz.",
     "products.fcText": "Microsoft Flight Simulator ve X-Plane için canlı bir alçalış ve uçuş rehberliği yoldaşı. Çalışan simülatörünüzü okur ve size tek bir sabit sayı vermek yerine uçtukça sürekli güncellenir.",
+    "products.eabText": "Electron ile masaüstü uygulamaları geliştirmek için planlanan bir araç. Proje yeni başlatıldı: henüz çalışan bir sürüm, önizleme ya da çıkış tarihi yok.",
     "products.fcMeta": "Son sürüm v0.4.0 · Windows 10/11 · Yalnızca uçuş simülasyonu kullanımı içindir.",
 
     "fc.back": "← Ürünler",

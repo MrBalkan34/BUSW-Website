@@ -474,6 +474,37 @@ html.i18n-loading body {
   padding-top: var(--space-2);
 }
 
+/* A card for work that has no usable version yet: a large, faint "In development" stamp across it. The words come
+   from the data-watermark attribute so they follow the chosen language. The stamp ignores the pointer and sits
+   behind nothing interactive. */
+.card-watermark {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-watermark::after {
+  content: attr(data-watermark);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-10deg);
+  color: rgba(255, 255, 255, 0.07);
+  font-family: var(--font-mono);
+  font-size: clamp(1.75rem, 7vw, 4.25rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+}
+
+#development-projects .card + .card {
+  margin-top: var(--space-3);
+}
+
 .card-title-row {
   display: flex;
   flex-wrap: wrap;
