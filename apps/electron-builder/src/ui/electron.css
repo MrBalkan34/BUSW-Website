@@ -1,0 +1,12 @@
+/* BUSW Electron App Builder: additions to the Website Builder's interface styles (loaded after them). */
+
+/* A standing reminder that this is not an offer yet. */
+.banner-dev { background: var(--surface); border-left-color: var(--border-strong); color: var(--muted); }
+
+/* The draft marker inside the estimate. */
+.draft-note { margin-top: 0.4rem; color: var(--muted); font-size: 0.8125rem; }
+
+/* A banner that holds a heading and a list, rather than a single paragraph. */
+.banner > div { flex: 1; }
+.banner > div h2 { font-size: 1rem; margin-bottom: 0.4rem; }
+.banner > div ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.35rem; }
