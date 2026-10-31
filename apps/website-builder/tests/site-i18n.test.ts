@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { JSDOM } from "jsdom";
 import { describe, expect, it } from "vitest";
 
-const PAGES = ["index", "products", "about", "contact", "flight-companion"] as const;
+const PAGES = ["index", "products", "services", "website-request", "electron-request", "social-request", "about", "contact", "flight-companion"] as const;
 
 /** The public marketing site lives at the repository root, three folders above this file. */
 const ROOT = import.meta.url.slice(0, import.meta.url.indexOf("apps/website-builder/"));

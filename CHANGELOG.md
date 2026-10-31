@@ -5,6 +5,7 @@ All notable changes to the BUSW website are recorded here.
 ## [Unreleased]
 
 ### Added
+- A **Services** tab (`services.html`, in the header and footer of every page) with three request boxes: `website-request.html` (a box that opens the website builder, plus an email option), `electron-request.html` (a "coming soon" message with the "In development" watermark; requests are not open) and `social-request.html` (what to include, then an email button). Requests are made by email; the site has no forms or backend. English and Turkish.
 - The BUSW Website Builder is available as an early preview at `/builder/`, served by this site (built copy committed in `builder/`; source in `apps/website-builder`). Products and the homepage link to it with an "Open the builder" button and describe what it does today: no publishing and no payments, online submission not connected (clients download a project brief and email it to BUSW). It shares the site's language choice.
 - Turkish (Türkçe) alongside English, with an English / Türkçe selector in the header of every page. The choice is remembered across pages and visits, sets the page language and updates the title and descriptions. A `?lang=tr` link opens a page in Turkish. Page addresses are unchanged. (The first visit follows the browser language.)
 - `flight-companion.html`: details page for BUSW Flight Companion (key capabilities, screenshots, release and downloads, pre-alpha limitations).
