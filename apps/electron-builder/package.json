@@ -1,0 +1,15 @@
+{
+  "name": "busw-electron-app-builder",
+  "private": true,
+  "version": "0.0.0",
+  "description": "BUSW Electron App Builder (in development). Pricing core only: no interface, nothing published.",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
+  }
+}
