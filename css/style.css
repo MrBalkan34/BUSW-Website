@@ -208,6 +208,15 @@ img {
   margin-top: var(--space-2);
 }
 
+/* The founders sit under the page text, set apart from it. */
+.founders-heading {
+  margin: var(--space-6) 0 var(--space-3);
+}
+
+.founders-heading + .grid-2 {
+  margin-bottom: var(--space-4);
+}
+
 /* Page headers and hero share a short red rule as the brand signature */
 .page-header,
 .hero {
@@ -663,6 +672,11 @@ html.i18n-loading body {
   margin-top: var(--space-1);
   color: var(--fg-muted);
   font-size: 0.875rem;
+}
+
+/* A row of photos with their credits, under a project card's text */
+.photo-row {
+  margin-top: var(--space-4);
 }
 
 .shot-stack {
