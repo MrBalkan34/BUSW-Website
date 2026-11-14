@@ -10,6 +10,8 @@ export const SUBMISSION_URL: string | undefined = (import.meta.env.VITE_SUBMISSI
 
 export type SubmitFailure =
   | { kind: "not-configured"; message: string; retryable: false }
+  /** Too big to send as a request (mostly images). Nothing was sent; the downloadable brief is the way to deliver it. */
+  | { kind: "too-large"; message: string; retryable: false; bytes: number }
   /** The request never got an answer: offline, DNS, blocked, or a timeout. */
   | { kind: "network"; message: string; retryable: true; timedOut: boolean }
   /** The service answered but could not take it: 5xx, 429 or a gateway error. */
@@ -26,6 +28,8 @@ export function failureMessage(failure: SubmitFailure, t: TranslateFn): string {
   switch (failure.kind) {
     case "not-configured":
       return t("submit.notConfigured");
+    case "too-large":
+      return t("submit.tooLarge");
     case "network":
       return t(failure.timedOut ? "submit.timeout" : "submit.network");
     case "unconfirmed":
@@ -46,12 +50,23 @@ export interface SubmitOptions {
 const DEFAULT_TIMEOUT_MS = 60_000;
 
 /**
+ * The largest request sent online. BUSW's host refuses request bodies above about 4.5 MB, so a bigger project is not
+ * attempted: the client is told so, and the downloadable brief is offered, instead of failing after a long upload.
+ */
+export const MAX_ONLINE_BYTES = 4_000_000;
+
+/**
  * Sends a submission. Success is reported only when the service replies 2xx with `{ "reference": "<id>" }`.
  * Anything else, including a 2xx with no reference, is a failure the client is told about.
  */
 export async function submitToBusw(payload: SubmissionPayload, options: SubmitOptions): Promise<SubmitResult> {
   if (!options.url) {
     return { ok: false, kind: "not-configured", retryable: false, message: "Online submission is not connected yet." };
+  }
+  const requestBody = JSON.stringify(payload);
+  const bytes = new TextEncoder().encode(requestBody).length;
+  if (bytes > MAX_ONLINE_BYTES) {
+    return { ok: false, kind: "too-large", retryable: false, bytes, message: "This project is too large to send online. Nothing has been sent. Download the brief and email it to BUSW instead." };
   }
   const doFetch = options.fetchImpl ?? fetch;
   const controller = new AbortController();
@@ -62,7 +77,7 @@ export async function submitToBusw(payload: SubmissionPayload, options: SubmitOp
     response = await doFetch(options.url, {
       method: "POST",
       headers: { "Content-Type": "application/json", "Idempotency-Key": payload.submission.submissionId },
-      body: JSON.stringify(payload),
+      body: requestBody,
       signal: controller.signal,
     });
   } catch (error) {
@@ -90,6 +105,10 @@ export async function submitToBusw(payload: SubmissionPayload, options: SubmitOp
     const reference = typeof record.reference === "string" ? record.reference.trim() : "";
     if (reference !== "" && reference.length <= 100) return { ok: true, reference };
     return { ok: false, kind: "unconfirmed", retryable: true, status: response.status, message: "BUSW's server replied without confirming it stored your submission, so it is not counted as sent. Try again, or download the brief instead." };
+  }
+
+  if (response.status === 413) {
+    return { ok: false, kind: "too-large", retryable: false, bytes, message: "This project is too large to send online. Nothing has been sent. Download the brief and email it to BUSW instead." };
   }
 
   if (response.status >= 400 && response.status < 500 && response.status !== 408 && response.status !== 429) {

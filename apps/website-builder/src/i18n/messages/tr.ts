@@ -549,6 +549,7 @@ export const tr: Readonly<Partial<Record<MessageKey, string>>> = {
   "submit.timeout": "BUSW zamanında yanıt vermedi. Gönderildiği doğrulanmadı.",
   "submit.network": "BUSW'ya ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin. Hiçbir şey gönderilmedi.",
   "submit.unconfirmed": "BUSW sunucusu, gönderiminizi kaydettiğini doğrulamadan yanıt verdi; bu yüzden gönderilmiş sayılmaz. Tekrar deneyin ya da bunun yerine proje özetini indirin.",
+  "submit.tooLarge": "Bu proje, çoğunlukla görselleri nedeniyle çevrim içi gönderilemeyecek kadar büyük. Hiçbir şey gönderilmedi. Proje özetini indirip bunun yerine BUSW'ya e-postayla gönderin.",
   "submit.rejected": "BUSW gönderimi bu haliyle kabul edemedi.",
   "submit.unavailable": "BUSW'nun gönderim hizmeti şu anda kullanılamıyor. Hiçbir şey gönderilmedi. Biraz sonra tekrar deneyin ya da bunun yerine proje özetini indirin.",
 

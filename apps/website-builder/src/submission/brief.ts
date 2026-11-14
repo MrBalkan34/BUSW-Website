@@ -1,5 +1,5 @@
 import { strToU8, zipSync } from "fflate";
-import { escapeHtml } from "../export/exportSite";
+import { escapeHtml } from "../export/escape";
 import { EXCLUSION_KEYS, fontLabel, itemLabel, itemUnit, paletteLabel, quoteLabel, regionLabel, startingPointLabel } from "../i18n/labels";
 import { english, type TranslateFn, type Translator } from "../i18n/translate";
 import { pruneAssets } from "../model/reducer";

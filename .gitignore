@@ -11,6 +11,8 @@ apps/server/data/
 .env
 .env.*
 !.env.example
+# The website builder's production build settings hold only public values (the submission endpoint address), never secrets.
+!apps/website-builder/.env.production
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal

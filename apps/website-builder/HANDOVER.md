@@ -24,7 +24,14 @@ Updated 2026-10-28 (final state of the "early preview" release). The sections be
 - **Only commit, push or deploy when explicitly asked.** The owner has been precise about which files to stage.
 - Business model for the builder: clients design a site, pick paid add-ons, see an estimate, and **submit to BUSW**; BUSW reviews and confirms scope and price before work starts. No self-service publishing, no payments in v1.
 
-## The one big open question: where do submissions go?
+## Where do submissions go? (answered: they are emailed to BUSW)
+
+**Update (November 2026):** "Submit to BUSW" is connected. `/builder/` posts to `api/submit.js` (a Vercel function), which verifies
+the project, recalculates the price and emails BUSW the brief as one zip through Resend, using the same sender setup as the
+contact form. See `docs/SUBMISSION.md`. Remaining decisions: a privacy notice and retention, and whether to email the client
+a confirmation. The section below is the original analysis, kept for context.
+
+### Original analysis
 
 There is **no backend**. Today "Submit to BUSW" is disabled and the Review step offers an interim downloadable brief (`.zip`) that the client must email to contact@busoftwareworks.com themselves. Nothing reaches the owner automatically.
 

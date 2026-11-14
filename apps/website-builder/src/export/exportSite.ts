@@ -1,4 +1,5 @@
 import { zipSync, strToU8 } from "fflate";
+import { escapeHtml } from "./escape";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { english, type TranslateFn } from "../i18n/translate";
@@ -12,9 +13,7 @@ import { siteCss } from "../site/siteCss";
 
 const EXTENSIONS = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" } as const;
 
-export function escapeHtml(text: string): string {
-  return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-}
+export { escapeHtml };
 
 function decodeDataUrl(dataUrl: string): Uint8Array {
   const base64 = dataUrl.slice(dataUrl.indexOf(",") + 1);

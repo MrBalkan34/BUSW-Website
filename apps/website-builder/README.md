@@ -82,16 +82,22 @@ The brief left these open; the current behaviour is deliberate and covered by te
 country/region/currency/catalogue version, template, the full design and page content, image references, add-ons with quantities,
 unit prices and item totals, separate one-time and monthly totals, quote-only requests and notes.
 
-### Today: interim downloadable brief
+### Today: online submission is connected
 
-**No submission service exists yet**, so the Review step does not claim to send anything. It shows *"Online submission is not
-connected yet"*, a disabled *Submit to BUSW*, and a working **"Interim option: download project brief"**. That produces a
-`.zip` with a printable `brief.html`, `submission.json`, the importable `design.busw-site.json`, and the images, and tells the
-client to email it to contact@busoftwareworks.com. The screen says plainly that it has **not** been sent.
+The production build posts to **`/api/submit`** (`VITE_SUBMISSION_URL` in `.env.production`), a Vercel function at the repository
+root (`api/submit.js`) that runs [`verifySubmission`](src/submission/verify.ts), recalculates the price, and **emails BUSW the
+brief as one attached zip**. The builder reports success only for a `201` reply with a reference; every other outcome is shown as
+*not sent*, with a retry and the downloadable brief (`brief.html`, `submission.json`, the importable `design.busw-site.json`, the
+images) as the alternative. Projects over about 4 MB (mostly images) are not attempted online; the client is told to email the
+brief instead. See [`docs/SUBMISSION.md`](../../docs/SUBMISSION.md) for the full path, limits, configuration and tests.
 
-### Going live: remaining setup
+`npm run build` also rebuilds the server bundle `api/_lib/submission.mjs` (the verifier, prices and brief), which is committed
+together with `/builder/`. Without `VITE_SUBMISSION_URL` (for example `npm run dev`), the builder falls back to the interim
+downloadable brief and says plainly that nothing is sent.
 
-The browser side is finished and tested. To turn on real submission:
+### Original plan for a submission service (superseded by `api/submit.js`, kept for reference)
+
+The browser side is finished and tested. The original checklist for a service was:
 
 1. **Build an endpoint** that accepts `POST` JSON `{ submission, assetData }` (see `SubmissionPayload` in `snapshot.ts`) with an
    `Idempotency-Key` header equal to `submission.submissionId`.

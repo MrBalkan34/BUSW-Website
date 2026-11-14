@@ -567,6 +567,7 @@ export const en = {
   "submit.network": "Could not reach BUSW. Check your connection and try again. Nothing has been sent.",
   "submit.unconfirmed": "BUSW's server replied without confirming it stored your submission, so it is not counted as sent. Try again, or download the brief instead.",
   "submit.rejected": "BUSW could not accept the submission as it is.",
+  "submit.tooLarge": "This project is too large to send online, mostly because of its images. Nothing has been sent. Download the project brief and email it to BUSW instead.",
   "submit.unavailable": "BUSW's submission service is not available right now. Nothing has been sent. Try again shortly, or download the brief instead.",
 
   // Project brief file

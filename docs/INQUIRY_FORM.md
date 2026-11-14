@@ -78,5 +78,4 @@ functions with no build step). It sends through [Resend](https://resend.com)'s H
 - A privacy notice and how long inquiries are kept. The form collects a name and an email address; the page says only
   that they are sent to BUSW by email so BUSW can reply.
 - Whether to keep a record of inquiries beyond the inbox. Nothing is stored anywhere else.
-- The builder's own "Submit to BUSW" is **not** connected. It needs a server that stores the brief and its images (Vercel
-  functions cap request bodies at about 4.5 MB). Until then the builder produces a downloadable brief to email.
+- The builder's "Submit to BUSW" is a separate path that reuses this email setup; see `SUBMISSION.md`.
