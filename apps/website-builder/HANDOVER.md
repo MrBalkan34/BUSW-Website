@@ -19,7 +19,7 @@ Updated 2026-10-28 (final state of the "early preview" release). The sections be
 
 ## What the owner (Eymen Balkan) wants
 
-- BUSW is an **independent studio run by one freelance developer**, not a company or corporation. Avoid wording that implies otherwise.
+- BUSW is an **independent studio run by its two co-founders and developers, Eymen Balkan and Murat Çağan Ulupınar** (this replaces the earlier "one freelance developer" wording), not a company or corporation. Avoid wording that implies otherwise.
 - **Honesty over polish**: never claim something was sent, received, built or working when it was not. The Products page calls the builder an "Early preview" and says it does not publish, take payments or submit online; keep that true until it changes.
 - **Only commit, push or deploy when explicitly asked.** The owner has been precise about which files to stage.
 - Business model for the builder: clients design a site, pick paid add-ons, see an estimate, and **submit to BUSW**; BUSW reviews and confirms scope and price before work starts. No self-service publishing, no payments in v1.

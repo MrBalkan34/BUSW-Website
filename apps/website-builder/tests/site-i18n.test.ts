@@ -104,7 +104,8 @@ describe.each(PAGES)("%s.html", (page) => {
   it("offers the language selector and loads the scripts in order", () => {
     expect(doc.querySelector("[data-lang-switch]")).toBeTruthy();
     const scripts = [...doc.querySelectorAll("script[src]")].map((s) => s.getAttribute("src"));
-    expect(scripts).toEqual(["js/i18n-strings.js", "js/i18n.js", "js/main.js"]);
+    // Every page shares three scripts; the contact page adds the inquiry form's.
+    expect(scripts).toEqual(page === "contact" ? ["js/i18n-strings.js", "js/i18n.js", "js/main.js", "js/inquiry.js"] : ["js/i18n-strings.js", "js/i18n.js", "js/main.js"]);
   });
 });
 
@@ -121,6 +122,8 @@ describe("every key in the table is used by a page", () => {
       used.add(`meta.${page}.description`);
     }
     used.add("common.langGroup");
+    // The inquiry form's script writes its own messages; those keys appear in js/inquiry.js, not in a page.
+    for (const m of read("js/inquiry.js").matchAll(/"(inq\.(?:err|msg)\.\w+)"/g)) used.add(m[1] as string);
     expect(Object.keys(en).filter((key) => !used.has(key))).toEqual([]);
   });
 });
@@ -133,7 +136,7 @@ describe("language behaviour in the browser", () => {
     expect(buttons.map((b) => b.getAttribute("lang"))).toEqual(["en", "tr"]);
     expect(buttons.map((b) => b.getAttribute("aria-pressed"))).toEqual(["true", "false"]);
     expect(window.document.documentElement.lang).toBe("en");
-    expect(window.document.querySelector("h2#work-heading")?.textContent).toBe("Current work");
+    expect(window.document.querySelector("h2#work-heading")?.textContent).toBe("Our work");
   });
 
   it("switches the text, the document language, the title and the metadata, and remembers it", () => {
@@ -141,7 +144,7 @@ describe("language behaviour in the browser", () => {
     (window.document.querySelector('[data-lang="tr"]') as HTMLButtonElement).click();
     const document = window.document;
     expect(document.documentElement.lang).toBe("tr");
-    expect(document.querySelector("h2#work-heading")?.textContent).toBe("Güncel çalışmalar");
+    expect(document.querySelector("h2#work-heading")?.textContent).toBe("Çalışmalarımız");
     expect(document.querySelector('a[href="products.html"]')?.textContent).toBe("Ürünler");
     expect(document.querySelector('meta[name="description"]')?.getAttribute("content")).toBe(tr["meta.index.description"]);
     expect(document.querySelector('meta[property="og:description"]')?.getAttribute("content")).toBe(tr["meta.index.description"]);
@@ -150,7 +153,8 @@ describe("language behaviour in the browser", () => {
     expect(document.querySelector('[data-lang="tr"]')?.getAttribute("aria-pressed")).toBe("true");
     expect(window.localStorage.getItem("busw.lang")).toBe("tr");
     // The business's own details and names are not translated.
-    expect(document.querySelector("h1")?.textContent).toBe("Balkan Universal Software Works (BUSW)");
+    expect(document.querySelector(".hero-brand")?.textContent).toBe("Balkan Universal Software Works (BUSW)");
+    expect(document.querySelector("h1")?.textContent).toBe(tr["home.heroTitle"]);
     expect(document.querySelector('a[href^="mailto:"]')?.textContent).toBe("contact@busoftwareworks.com");
   });
 
@@ -191,16 +195,16 @@ describe("language behaviour in the browser", () => {
     const window = dom("index", { stored: "tr" });
     (window.document.querySelector('[data-lang="en"]') as HTMLButtonElement).click();
     expect(window.document.documentElement.lang).toBe("en");
-    expect(window.document.querySelector("h2#work-heading")?.textContent).toBe("Current work");
+    expect(window.document.querySelector("h2#work-heading")?.textContent).toBe("Our work");
     expect(window.document.title).toBe(en["meta.index.title"]);
     expect(window.localStorage.getItem("busw.lang")).toBe("en");
   });
 
   it("keeps the page when a translation is missing instead of showing a key", () => {
     const window = dom("index", { stored: "tr", main: false });
-    window.eval(`delete window.BUSW_STRINGS.tr["home.currentWork"]; window.BUSW_I18N.setLanguage("tr");`);
-    expect(window.document.querySelector("h2#work-heading")?.textContent).toBe("Current work");
-    expect(window.document.body.textContent).not.toMatch(/home\.currentWork|nav\.home/);
+    window.eval(`delete window.BUSW_STRINGS.tr["home.workTitle"]; window.BUSW_I18N.setLanguage("tr");`);
+    expect(window.document.querySelector("h2#work-heading")?.textContent).toBe("Our work");
+    expect(window.document.body.textContent).not.toMatch(/home\.workTitle|nav\.home/);
   });
 
   it("re-words the menu button in the chosen language, open or closed", () => {

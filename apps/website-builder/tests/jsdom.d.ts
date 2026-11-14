@@ -9,3 +9,7 @@ declare module "jsdom" {
 declare module "node:fs" {
   export function readFileSync(path: URL, encoding: "utf8"): string;
 }
+
+declare module "node:module" {
+  export function createRequire(url: string): (id: string) => unknown;
+}

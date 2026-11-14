@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Services — Balkan Universal Software Works</title>
-  <meta name="description" content="Services from Balkan Universal Software Works (BUSW): website builds, Electron desktop apps (early preview) and social media management." />
+  <meta name="description" content="Websites, Electron desktop apps and social media management from Balkan Universal Software Works (BUSW): what each service delivers and who it is for." />
   <link rel="icon" href="assets/busw-icon-v2-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="assets/busw-icon-v2-180.png" sizes="180x180" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Balkan Universal Software Works (BUSW)" />
   <meta property="og:title" content="Services — Balkan Universal Software Works" />
-  <meta property="og:description" content="Services from Balkan Universal Software Works (BUSW): website builds, Electron desktop apps (early preview) and social media management." />
+  <meta property="og:description" content="Websites, Electron desktop apps and social media management from Balkan Universal Software Works (BUSW): what each service delivers and who it is for." />
   <meta property="og:image" content="https://www.busoftwareworks.com/assets/busw-social-preview-v2.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
@@ -18,7 +18,7 @@
   <meta property="og:image:alt" content="BUSW, Balkan Universal Software Works: apps, websites, solutions" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Services — Balkan Universal Software Works" />
-  <meta name="twitter:description" content="Services from Balkan Universal Software Works (BUSW): website builds, Electron desktop apps (early preview) and social media management." />
+  <meta name="twitter:description" content="Websites, Electron desktop apps and social media management from Balkan Universal Software Works (BUSW): what each service delivers and who it is for." />
   <meta name="twitter:image" content="https://www.busoftwareworks.com/assets/busw-social-preview-v2.png" />
   <meta name="twitter:image:alt" content="BUSW, Balkan Universal Software Works: apps, websites, solutions" />
   <link rel="stylesheet" href="css/style.css" />
@@ -49,7 +49,7 @@
           <li><a href="products.html" data-i18n="nav.products">Products</a></li>
           <li><a href="services.html" aria-current="page" data-i18n="nav.services">Services</a></li>
           <li><a href="about.html" data-i18n="nav.about">About</a></li>
-          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+          <li><a href="contact.html" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
       <div class="lang-switch" data-lang-switch></div>
@@ -60,9 +60,7 @@
     <div class="page-header">
       <div class="container">
         <h1 data-i18n="services.title">Services</h1>
-        <p class="lede" data-i18n="services.lede">
-          Ask BUSW to build a website, build a desktop app, or manage your social media. Choose the kind of request you want to make.
-        </p>
+        <p class="lede" data-i18n="services.lede">What BUSW builds, who it is for, and how to start. Scope and price are confirmed with you before any work starts.</p>
       </div>
     </div>
 
@@ -70,30 +68,60 @@
       <div class="container">
         <h2 class="visually-hidden" id="requests-heading" data-i18n="services.title">Services</h2>
         <div class="grid-3">
-          <article class="card">
-            <h3 data-i18n="services.website.title">Website build request</h3>
-            <p data-i18n="services.website.text">Have BUSW build your website. Design it yourself in the website builder, or discuss it by email first.</p>
+          <article class="card service-card">
+            <h3 data-i18n="svc.website.title">Website development</h3>
+            <p class="service-for" data-i18n="svc.website.for">Businesses, studios and individuals who need a clear website that works on phones and desktops.</p>
+            <ul class="feature-list">
+                <li data-i18n="svc.website.d1">Pages built from a template, with your own text and images</li>
+                <li data-i18n="svc.website.d2">Layouts for desktop and mobile</li>
+                <li data-i18n="svc.website.d3">A standard contact form, plus titles and descriptions for search results</li>
+                <li data-i18n="svc.website.d4">Set up on one hosting account</li>
+              </ul>
             <div class="btn-group">
-              <a class="btn btn-primary" href="website-request.html" data-i18n="services.website.cta">Start a website request</a>
+              <a class="btn btn-primary" href="website-request.html" data-i18n="home.ctaWebsite">Request a website</a>
+              <a class="btn btn-secondary" href="builder/" data-i18n="svc.website.builder">Design it in the builder</a>
             </div>
           </article>
 
-          <article class="card">
-            <h3 data-i18n="services.electron.title">Electron app build request</h3>
-            <div><span class="badge badge-status" data-i18n="badge.earlyPreview">Early preview</span></div>
-            <p data-i18n="services.electron.text">A desktop application built with Electron. Plan it in the early-preview order wizard, or discuss it by email first.</p>
+          <article class="card service-card">
+            <h3 data-i18n="svc.electron.title">Electron desktop apps</h3>
+            <p class="service-for" data-i18n="svc.electron.for">Businesses and teams that want their own program on their computers, not just a page in a browser.</p>
+            <ul class="feature-list">
+                <li data-i18n="svc.electron.d1">A desktop app you install like any other program</li>
+                <li data-i18n="svc.electron.d2">Built with Electron, a widely used technology for desktop software</li>
+                <li data-i18n="svc.electron.d3">Windows first, with macOS and Linux versions as options</li>
+                <li data-i18n="svc.electron.d4">Plan it in the early-preview order wizard, where prices are a draft</li>
+              </ul>
             <div class="btn-group">
-              <a class="btn btn-primary" href="electron-request.html" data-i18n="services.electron.cta">Start an Electron app request</a>
+              <a class="btn btn-primary" href="electron-request.html" data-i18n="svc.electron.cta">Request an Electron app</a>
             </div>
           </article>
 
-          <article class="card">
-            <h3 data-i18n="services.social.title">Social media management request</h3>
-            <p data-i18n="services.social.text">Ask BUSW to manage your social media. Send your request by email and BUSW will reply to confirm what is involved.</p>
+          <article class="card service-card">
+            <h3 data-i18n="svc.social.title">Social media management</h3>
+            <p class="service-for" data-i18n="svc.social.for">Businesses that want someone to look after their social media accounts.</p>
+            <ul class="feature-list">
+                <li data-i18n="svc.social.d1">What is involved is agreed with you once you describe your accounts and goals</li>
+                <li data-i18n="svc.social.d2">BUSW replies by email to confirm the scope and price before any work starts</li>
+              </ul>
             <div class="btn-group">
-              <a class="btn btn-primary" href="social-request.html" data-i18n="services.social.cta">Start a social media request</a>
+              <a class="btn btn-primary" href="social-request.html" data-i18n="svc.social.cta">Request social media management</a>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="not-sure-heading">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2 id="not-sure-heading" data-i18n="services.notSureTitle">Not sure which service you need?</h2>
+            <p data-i18n="services.notSureText">Describe your project in a short inquiry and BUSW will reply by email.</p>
+          </div>
+          <div class="btn-group">
+            <a class="btn btn-primary" href="contact.html#inquiry" data-i18n="home.inquiryCta">Send an inquiry</a>
+          </div>
         </div>
       </div>
     </section>

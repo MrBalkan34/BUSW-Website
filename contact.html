@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Balkan Universal Software Works</title>
-  <meta name="description" content="Contact Balkan Universal Software Works (BUSW) at contact@busoftwareworks.com" />
+  <meta name="description" content="Send a project inquiry to Balkan Universal Software Works (BUSW), or email contact@busoftwareworks.com." />
   <link rel="icon" href="assets/busw-icon-v2-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="assets/busw-icon-v2-180.png" sizes="180x180" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Balkan Universal Software Works (BUSW)" />
   <meta property="og:title" content="Contact — Balkan Universal Software Works" />
-  <meta property="og:description" content="Contact Balkan Universal Software Works (BUSW) at contact@busoftwareworks.com" />
+  <meta property="og:description" content="Send a project inquiry to Balkan Universal Software Works (BUSW), or email contact@busoftwareworks.com." />
   <meta property="og:image" content="https://www.busoftwareworks.com/assets/busw-social-preview-v2.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
@@ -18,7 +18,7 @@
   <meta property="og:image:alt" content="BUSW, Balkan Universal Software Works: apps, websites, solutions" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Contact — Balkan Universal Software Works" />
-  <meta name="twitter:description" content="Contact Balkan Universal Software Works (BUSW) at contact@busoftwareworks.com" />
+  <meta name="twitter:description" content="Send a project inquiry to Balkan Universal Software Works (BUSW), or email contact@busoftwareworks.com." />
   <meta name="twitter:image" content="https://www.busoftwareworks.com/assets/busw-social-preview-v2.png" />
   <meta name="twitter:image:alt" content="BUSW, Balkan Universal Software Works: apps, websites, solutions" />
   <link rel="stylesheet" href="css/style.css" />
@@ -49,7 +49,7 @@
           <li><a href="products.html" data-i18n="nav.products">Products</a></li>
           <li><a href="services.html" data-i18n="nav.services">Services</a></li>
           <li><a href="about.html" data-i18n="nav.about">About</a></li>
-          <li><a href="contact.html" aria-current="page" data-i18n="nav.contact">Contact</a></li>
+          <li><a href="contact.html" class="nav-cta" aria-current="page" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
       <div class="lang-switch" data-lang-switch></div>
@@ -60,20 +60,65 @@
     <div class="page-header">
       <div class="container">
         <h1 data-i18n="contact.title">Contact</h1>
-        <p class="lede" data-i18n="contact.lede">
-          Balkan Universal Software Works (BUSW) welcomes questions,
-          feedback, bug reports, and enquiries about websites. Reach out
-          directly by email, or find BUSW on Instagram.
-        </p>
+        <p class="lede" data-i18n="contact.lede">Send an inquiry about a website, a desktop app or social media management, or email BUSW directly. You do not have to design anything first.</p>
       </div>
     </div>
 
     <section class="section">
-      <div class="container">
-        <div class="btn-group">
-          <a class="btn btn-primary" href="mailto:contact@busoftwareworks.com">contact@busoftwareworks.com</a>
-          <a class="btn btn-secondary" href="https://www.instagram.com/balkanuniversalsoftwareworks/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <div class="container contact-grid">
+        <div>
+          <h2 id="inquiry-heading" data-i18n="contact.formTitle">Send an inquiry</h2>
+          <p class="form-lede" data-i18n="contact.formLede">A few details are enough. BUSW will reply by email.</p>
+          <form id="inquiry" class="inquiry-form card" action="mailto:contact@busoftwareworks.com" method="post" enctype="text/plain" novalidate aria-labelledby="inquiry-heading">
+            <div class="field">
+              <label for="inq-name"><span data-i18n="inq.name">Your name</span> <span class="req" data-i18n="inq.required">(required)</span></label>
+              <input id="inq-name" name="name" type="text" autocomplete="name" maxlength="120" required />
+              <p class="field-error" id="inq-name-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="inq-email"><span data-i18n="inq.email">Email address</span> <span class="req" data-i18n="inq.required">(required)</span></label>
+              <input id="inq-email" name="email" type="email" autocomplete="email" maxlength="200" required />
+              <p class="field-error" id="inq-email-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="inq-service"><span data-i18n="inq.service">What do you need?</span> <span class="req" data-i18n="inq.required">(required)</span></label>
+              <select id="inq-service" name="service" required>
+                <option value="" data-i18n="inq.opt.choose">Choose one</option>
+                <option value="website" data-i18n="inq.opt.website">A website</option>
+                <option value="electron" data-i18n="inq.opt.electron">A desktop app (Electron)</option>
+                <option value="social" data-i18n="inq.opt.social">Social media management</option>
+                <option value="other" data-i18n="inq.opt.other">Something else</option>
+              </select>
+              <p class="field-error" id="inq-service-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="inq-message"><span data-i18n="inq.message">Tell us about your project</span> <span class="req" data-i18n="inq.required">(required)</span></label>
+              <textarea id="inq-message" name="message" rows="7" maxlength="4000" required aria-describedby="inq-message-hint"></textarea>
+              <p class="field-hint" id="inq-message-hint" data-i18n="inq.messageHint">What you want built or managed, and anything that helps us understand it.</p>
+              <p class="field-error" id="inq-message-error" hidden></p>
+            </div>
+            <p class="hp" aria-hidden="true"><label><span data-i18n="inq.hp">Leave this field empty</span> <input type="text" name="company" tabindex="-1" autocomplete="off" /></label></p>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit" data-i18n="inq.submit">Send inquiry</button>
+            </div>
+            <p class="fine-print" data-i18n="inq.notice">Your name, email address and message are sent to BUSW by email so BUSW can reply.</p>
+            <div class="form-status" id="inquiry-status" role="status" aria-live="polite" hidden></div>
+          </form>
         </div>
+
+        <aside class="contact-aside">
+          <section class="card" aria-labelledby="direct-heading">
+            <h2 class="card-heading" id="direct-heading" data-i18n="contact.directTitle">Prefer to write directly?</h2>
+            <div class="btn-group">
+              <a class="btn btn-primary" href="mailto:contact@busoftwareworks.com">contact@busoftwareworks.com</a>
+              <a class="btn btn-secondary" href="https://www.instagram.com/balkanuniversalsoftwareworks/" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </div>
+          </section>
+          <section class="card" aria-labelledby="after-heading">
+            <h2 class="card-heading" id="after-heading" data-i18n="contact.afterTitle">What happens next</h2>
+            <p data-i18n="contact.after">BUSW reads your message and replies by email to talk it through. Nothing is built before the scope and price are confirmed with you.</p>
+          </section>
+        </aside>
       </div>
     </section>
   </main>
@@ -111,5 +156,6 @@
   <script src="js/i18n-strings.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/inquiry.js"></script>
 </body>
 </html>

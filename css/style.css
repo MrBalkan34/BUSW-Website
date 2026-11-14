@@ -377,6 +377,27 @@ img {
   color: var(--fg);
 }
 
+/* The Contact link is the navigation's call to action. */
+.nav-list a.nav-cta {
+  padding: 0.5rem 1.1rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  transition: background-color var(--transition), border-color var(--transition), transform 180ms var(--ease-out);
+}
+
+.nav-list a.nav-cta::after {
+  content: none;
+}
+
+.nav-list a.nav-cta:hover,
+.nav-list a.nav-cta[aria-current] {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
 .nav-list a:hover::after,
 .nav-list a[aria-current]::after {
   transform: scaleX(1);
@@ -975,6 +996,13 @@ html.i18n-loading body {
     content: none;
   }
 
+  .nav-list a.nav-cta {
+    margin-top: var(--space-1);
+    padding: 0.75rem;
+    border-left: 1px solid var(--accent);
+    text-align: center;
+  }
+
   .nav-list a:hover,
   .nav-list a[aria-current] {
     border-left-color: var(--accent);
@@ -984,6 +1012,318 @@ html.i18n-loading body {
 @media (max-width: 30rem) {
   .btn-group .btn {
     flex: 1 1 100%;
+  }
+}
+
+/* ---------- Homepage, services, FAQ and the inquiry form ---------- */
+
+.hero-brand {
+  margin-bottom: var(--space-2);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+}
+
+.hero h1 {
+  max-width: 18ch;
+}
+
+.hero-lede {
+  max-width: 38rem;
+  margin-top: var(--space-3);
+  color: var(--fg-muted);
+  font-size: 1.0625rem;
+}
+
+.hero .btn-group .btn {
+  min-height: 48px;
+  padding-inline: 1.5rem;
+  font-size: 1rem;
+}
+
+.section-more {
+  margin-top: var(--space-4);
+}
+
+/* Work and in-development cards: a picture on top, then what it is and what BUSW did */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  gap: var(--space-3);
+}
+
+.work-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.work-media {
+  display: block;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.work-media img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.work-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.work-body > .btn-group {
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+
+.work-role {
+  color: var(--fg-muted);
+  font-size: 0.9375rem;
+}
+
+.work-role strong {
+  color: var(--fg);
+}
+
+/* Service cards */
+.service-for {
+  color: var(--fg-muted);
+}
+
+.service-card .feature-list {
+  margin-top: var(--space-1);
+}
+
+/* Process steps */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps > li {
+  counter-increment: step;
+}
+
+.steps > li::before {
+  content: counter(step, decimal-leading-zero);
+  color: var(--accent-text);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+}
+
+.founder-card h3 {
+  font-size: 1.375rem;
+}
+
+/* The closing call to action */
+.cta-band {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3) var(--space-6);
+  align-items: center;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: linear-gradient(135deg, rgba(215, 38, 61, 0.14), rgba(215, 38, 61, 0) 60%), var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+}
+
+.cta-band > div:first-child {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 44rem;
+}
+
+.cta-band .btn-group {
+  margin-top: 0;
+}
+
+.cta-band .btn {
+  min-height: 48px;
+  padding-inline: 1.75rem;
+  font-size: 1rem;
+}
+
+/* Frequently asked questions */
+.faq {
+  display: grid;
+  gap: var(--space-1);
+  max-width: 46rem;
+}
+
+.faq details {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.faq details[open] {
+  border-color: var(--border-strong);
+}
+
+.faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "+";
+  flex: none;
+  color: var(--accent-text);
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.faq details[open] summary::after {
+  content: "−";
+}
+
+.faq details > p {
+  padding: 0 var(--space-3) var(--space-3);
+  color: var(--fg-muted);
+}
+
+/* Contact page: the form and the direct options side by side */
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.form-lede {
+  margin: var(--space-1) 0 var(--space-3);
+  color: var(--fg-muted);
+}
+
+.contact-aside {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.inquiry-form {
+  gap: var(--space-3);
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.field .req {
+  color: var(--fg-muted);
+  font-weight: 400;
+}
+
+.field input,
+.field select,
+.field textarea {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--fg);
+  font: inherit;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.field textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--fg-muted);
+}
+
+.field [aria-invalid="true"] {
+  border-color: var(--accent-text);
+  box-shadow: 0 0 0 1px var(--accent-text);
+}
+
+.field-hint {
+  margin-top: 0.35rem;
+  color: var(--fg-muted);
+  font-size: 0.875rem;
+}
+
+.field-error {
+  margin-top: 0.4rem;
+  color: #ffb4bf;
+  font-size: 0.875rem;
+}
+
+/* A field only robots fill in. It is moved off-screen rather than hidden, so it stays in the page for them. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.form-actions .btn {
+  min-height: 48px;
+  padding-inline: 1.75rem;
+  font-size: 1rem;
+}
+
+.form-status {
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.form-status[data-state="sent"] {
+  border-left-color: #7ad99a;
+}
+
+.form-status h3 {
+  margin-bottom: var(--space-1);
+  font-size: 1.0625rem;
+}
+
+.form-status .btn-group {
+  margin-top: var(--space-2);
+}
+
+@media (min-width: 56rem) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: var(--space-6);
   }
 }
 
